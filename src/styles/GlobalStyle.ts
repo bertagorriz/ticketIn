@@ -5,6 +5,9 @@ const GlobalStyle = createGlobalStyle`
     box-sizing: border-box;
   }
 
+   html {
+    font-family: ${(props) => props.theme.fonts.primary};
+  }  
 
   body,
   h1,
@@ -36,7 +39,6 @@ const GlobalStyle = createGlobalStyle`
     cursor: pointer;
     background-color: transparent;
   }
-
 `;
 
 export default GlobalStyle;

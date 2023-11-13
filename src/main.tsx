@@ -5,12 +5,16 @@ import App from "./components/App/App";
 import "./index.css";
 import { store } from "./store";
 import GlobalStyle from "./styles/GlobalStyle";
+import { ThemeProvider } from "styled-components";
+import theme from "./styles/theme";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
-    <Provider store={store}>
-      <GlobalStyle />
-      <App />
-    </Provider>
+    <ThemeProvider theme={theme}>
+      <Provider store={store}>
+        <GlobalStyle />
+        <App />
+      </Provider>
+    </ThemeProvider>
   </React.StrictMode>,
 );
