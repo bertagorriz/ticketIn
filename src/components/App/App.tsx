@@ -1,5 +1,5 @@
 const App = (): React.ReactElement => {
-  return <p>Hello world!</p>;
+  return <p>TicketIn</p>;
 };
 
 export default App;
