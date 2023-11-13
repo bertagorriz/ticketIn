@@ -1,6 +1,4 @@
-# Boilerplate for React apps
-
-With Vite + TypeScript
+## TicketIn
 
 ## Scripts
 
