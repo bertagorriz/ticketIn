@@ -1,5 +1,7 @@
+import Layout from "../Layout/Layout";
+
 const App = (): React.ReactElement => {
-  return <p>TicketIn</p>;
+  return <Layout />;
 };
 
 export default App;
