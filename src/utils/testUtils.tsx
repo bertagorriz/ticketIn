@@ -3,8 +3,8 @@ import { RootState, setupStore, store } from "../store";
 import { PropsWithChildren } from "react";
 import { render } from "@testing-library/react";
 import { ThemeProvider } from "styled-components";
-import theme from "../styles/theme";
-import GlobalStyle from "../styles/GlobalStyle";
+import theme from "../styles/theme/theme";
+import GlobalStyle from "../styles/GlobalStyle/GlobalStyle";
 import { Provider } from "react-redux";
 import { createMemoryRouter, RouterProvider } from "react-router-dom";
 
