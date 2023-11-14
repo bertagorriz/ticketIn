@@ -7,10 +7,15 @@ const apiUrl = import.meta.env.VITE_API_URL;
 
 const useMovies = () => {
   const getMovies = useCallback(async (): Promise<MovieStructure[]> => {
-    const { data: movies } = await axios.get<MovieStructure[]>(
-      `${apiUrl}${path.movies}`,
-    );
-    return movies;
+    try {
+      const { data: movies } = await axios.get<MovieStructure[]>(
+        `${apiUrl}${path.movies}`,
+      );
+      return movies;
+    } catch {
+      const error = "Sorry, movies couldn't be loaded";
+      throw error;
+    }
   }, []);
 
   return { getMovies };
