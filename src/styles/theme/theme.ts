@@ -14,11 +14,11 @@ const theme: DefaultTheme = {
     primary: "Inter",
   },
   fontSize: {
-    extraSmall: "16px",
-    small: "20px",
-    medium: "22px",
-    large: "24px",
-    extraLarge: "35px",
+    extraSmall: "1rem",
+    small: "1.25rem",
+    medium: "1.375rem",
+    large: "1.5rem",
+    extraLarge: "2.188rem",
   },
   fontWeight: {
     regular: "400",
