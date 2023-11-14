@@ -1,5 +1,11 @@
+import Navbar from "../Navbar/Navbar";
+
 const App = (): React.ReactElement => {
-  return <p>TicketIn</p>;
+  return (
+    <>
+      <Navbar /> <p>TicketIn</p>
+    </>
+  );
 };
 
 export default App;
