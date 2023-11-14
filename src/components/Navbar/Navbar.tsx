@@ -1,9 +1,9 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 import NavbarStyled from "./NavbarStyled";
 import path from "../../routers/paths/paths";
 
 const Navbar = (): React.ReactElement => {
-  const pathname = window.location.pathname;
+  const location = useLocation();
 
   return (
     <NavbarStyled>
@@ -15,7 +15,7 @@ const Navbar = (): React.ReactElement => {
           height="28.05"
         />
       </NavLink>
-      {pathname !== path.movies && (
+      {location.pathname !== path.movies && (
         <button className="navbar-container__backtopage-button">
           <img
             src="/images/navbar/back-to-page-icon.svg"
