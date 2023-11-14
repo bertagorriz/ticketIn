@@ -1,13 +1,17 @@
 import { Outlet } from "react-router-dom";
 import ContainerStyled from "../shared/ContainerStyled";
+import Navbar from "../Navbar/Navbar";
 import MovieListPage from "../../pages/MovieListPage/MovieListPage";
 
 const Layout = (): React.ReactElement => {
   return (
-    <ContainerStyled>
-      <MovieListPage />
-      <Outlet />
-    </ContainerStyled>
+    <>
+      <Navbar />
+      <ContainerStyled>
+        <MovieListPage />
+        <Outlet />
+      </ContainerStyled>
+    </>
   );
 };
 
