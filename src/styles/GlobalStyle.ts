@@ -1,11 +1,11 @@
 import { createGlobalStyle } from "styled-components";
 
 const GlobalStyle = createGlobalStyle`
-*,::before,::after{
+  *,::before,::after{
     box-sizing: border-box;
   }
 
-   html {
+  html {
     font-family: ${(props) => props.theme.fonts.primary};
   }  
 
