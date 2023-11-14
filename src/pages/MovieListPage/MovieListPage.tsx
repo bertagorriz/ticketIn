@@ -1,6 +1,7 @@
+import { useAppDispatch } from "../../store";
+import MovieList from "../../components/MovieList/MovieList";
 import { loadMoviesActionCreator } from "../../entities/movies/moviesSlice/moviesSlice";
 import { moviesMock } from "../../mocks/moviesMock";
-import { useAppDispatch } from "../../store";
 import MovieListPageStyled from "./MovieListPageStyled";
 
 const MovieListPage = (): React.ReactElement => {
@@ -10,6 +11,7 @@ const MovieListPage = (): React.ReactElement => {
   return (
     <MovieListPageStyled>
       <h1 className="title">Choose a movie</h1>
+      <MovieList />
     </MovieListPageStyled>
   );
 };
