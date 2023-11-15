@@ -7,7 +7,7 @@ import MovieListPageStyled from "../../../pages/MovieListPage/MovieListPageStyle
 const MovieListSkeleton = (): React.ReactElement => {
   return (
     <MovieListPageStyled>
-      <h1 className="title opacity">
+      <h1 className="title opacity" aria-label="skeleton">
         <Skeleton width={170} duration={2} />
       </h1>
       <MoviesListStyled>
