@@ -1,4 +1,5 @@
 import { useAppSelector } from "../../store";
+import MovieCard from "../MovieCard/MovieCard";
 import MoviesListStyled from "./MovieListStyled";
 
 const MovieList = (): React.ReactElement => {
@@ -7,9 +8,9 @@ const MovieList = (): React.ReactElement => {
   return (
     <MoviesListStyled>
       <ul className="cards-list">
-        {moviesData.map((_movie, position) => (
+        {moviesData.map((movie, position) => (
           <li key={position}>
-            <article id={position.toString()}></article>
+            <MovieCard movieProps={movie} />
           </li>
         ))}
       </ul>
