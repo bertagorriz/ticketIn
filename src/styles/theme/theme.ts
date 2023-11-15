@@ -5,7 +5,9 @@ const theme: DefaultTheme = {
   colors: {
     background: "#2a2a2a",
     header: "#000",
+    corporative: "#ffc715",
     text: "#fff",
+    hover: "#585858",
     available: "#f2f2f2",
     selected: "#cb2b2b",
     reserved: "#098f3e",

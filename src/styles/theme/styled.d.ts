@@ -6,6 +6,8 @@ declare module "styled-components" {
       background: string;
       header: string;
       text: string;
+      hover: string;
+      corporative: string;
       available: string;
       reserved: string;
       selected: string;
