@@ -7,6 +7,10 @@ const MovieListPageStyled = styled.div`
     font-weight: ${(props) => props.theme.fontWeight.semiBold};
     padding: 30px 0;
   }
+
+  .opacity {
+    opacity: 0.5;
+  }
 `;
 
 export default MovieListPageStyled;
