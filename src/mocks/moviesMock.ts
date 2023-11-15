@@ -28,3 +28,5 @@ export const moviesMock: MovieStructure[] = [
     genre: "Action, Adventure, Sci-Fi",
   },
 ];
+
+export const emptyMock: MovieStructure[] = [];
