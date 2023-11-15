@@ -1,10 +1,10 @@
 import { renderHook } from "@testing-library/react";
-import { moviesMock } from "../../../mocks/moviesMock";
+import { moviesMock } from "../../../mocks/moviesMocks/moviesMock";
 import { MovieStructure } from "../types";
 import useMovies from "./useMovies";
 import { wrapWithProviders } from "../../../utils/testUtils";
-import { server } from "../../../mocks/node";
-import { errorHandlers } from "../../../mocks/handlers";
+import { server } from "../../../mocks/moviesMocks/node";
+import { errorHandlers } from "../../../mocks/moviesMocks/handlers";
 
 describe("Given a getMovies function", () => {
   describe("When it is invoked", () => {

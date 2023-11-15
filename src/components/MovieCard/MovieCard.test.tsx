@@ -1,5 +1,5 @@
 import { screen } from "@testing-library/react";
-import { moviesMock } from "../../mocks/moviesMock";
+import { moviesMock } from "../../mocks/moviesMocks/moviesMock";
 import { renderWithProviders } from "../../utils/testUtils";
 import MovieCard from "./MovieCard";
 

@@ -1,4 +1,4 @@
-import { MovieStructure } from "../entities/movies/types";
+import { MovieStructure } from "../../entities/movies/types";
 
 export const moviesMock: MovieStructure[] = [
   {

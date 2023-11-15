@@ -1,7 +1,7 @@
 import { screen } from "@testing-library/react";
 import { renderWithProviders, wrapWithRouter } from "../../utils/testUtils";
 import MovieList from "./MovieList";
-import { moviesMock } from "../../mocks/moviesMock";
+import { moviesMock } from "../../mocks/moviesMocks/moviesMock";
 
 describe("Given a MovieList component", () => {
   describe("When it is rendered", () => {
