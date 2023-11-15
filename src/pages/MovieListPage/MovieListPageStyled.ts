@@ -5,7 +5,7 @@ const MovieListPageStyled = styled.div`
     color: ${(props) => props.theme.colors.text};
     font-size: ${(props) => props.theme.fontSize.medium};
     font-weight: ${(props) => props.theme.fontWeight.semiBold};
-    padding-top: 30px;
+    padding: 30px 0;
   }
 `;
 
