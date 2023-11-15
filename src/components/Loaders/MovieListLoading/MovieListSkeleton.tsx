@@ -14,8 +14,8 @@ const MovieListSkeleton = (): React.ReactElement => {
         <ul className="cards-list opacity">
           {Array(6)
             .fill(6)
-            .map((_movie, position) => (
-              <li key={position}>
+            .map(() => (
+              <li key={+1}>
                 <MovieCardStyled className="movie">
                   <Skeleton
                     className="movie__poster"
