@@ -6,6 +6,7 @@ const NavbarStyled = styled.nav`
   align-items: center;
   position: relative;
   padding: 0 30px;
+  min-width: 320px;
   width: 100%;
   height: 60px;
   background-color: ${(props) => props.theme.colors.header};

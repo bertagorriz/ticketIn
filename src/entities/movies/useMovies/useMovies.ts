@@ -2,6 +2,7 @@ import { useCallback } from "react";
 import axios from "axios";
 import { MovieStructure } from "../types";
 import path from "../../../routers/paths/paths";
+import showToast from "../../../Toast/showToast";
 
 const apiUrl = import.meta.env.VITE_API_URL;
 
@@ -14,6 +15,7 @@ const useMovies = () => {
       return movies;
     } catch {
       const error = "Sorry, movies couldn't be loaded";
+      showToast(error, "error");
       throw error;
     }
   }, []);
