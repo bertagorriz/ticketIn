@@ -18,7 +18,6 @@ const MovieCardStyled = styled.article`
       color: ${(props) => props.theme.colors.text};
       margin-top: 12px;
       text-align: center;
-      margin-bottom: 30px;
     }
   }
 `;
