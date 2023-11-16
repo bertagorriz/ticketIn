@@ -7,6 +7,8 @@ import {
   hideSkeletonActionCreator,
   showSkeletonActionCreator,
 } from "../../ui/uiSlice";
+import showToast from "../../../Toast/showToast";
+
 
 const apiUrl = import.meta.env.VITE_API_URL;
 
@@ -27,6 +29,7 @@ const useMovies = () => {
       dispatch(hideSkeletonActionCreator());
 
       const error = "Sorry, movies couldn't be loaded";
+      showToast(error, "error");
       throw error;
     }
   }, [dispatch]);
