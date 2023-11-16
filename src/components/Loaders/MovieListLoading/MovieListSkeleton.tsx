@@ -14,13 +14,13 @@ const MovieListSkeleton = (): React.ReactElement => {
         <ul className="cards-list opacity">
           {Array(6)
             .fill(6)
-            .map(() => (
-              <li key={+1}>
+            .map((_movie, position) => (
+              <li key={position}>
                 <MovieCardStyled className="movie">
                   <Skeleton
                     className="movie__poster"
-                    width="130px"
-                    height="190px"
+                    width={130}
+                    height={190}
                     duration={2}
                   />
                   <h1 className="movie__title">

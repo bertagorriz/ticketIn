@@ -6,6 +6,7 @@ const MoviesListStyled = styled.section`
   justify-content: center;
   width: 100%;
   gap: 20px;
+  padding-bottom: 30px;
 
   .cards-list {
     display: grid;
