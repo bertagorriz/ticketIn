@@ -22,13 +22,13 @@ const GlobalStyle = createGlobalStyle`
     font: inherit;
   }
 
-  a{
+  a {
     text-decoration: none;
     color: inherit;
     font: inherit;
   }
 
-  ul{
+  ul {
     list-style: none;
     padding-left: 0;
     margin-bottom: 0;
