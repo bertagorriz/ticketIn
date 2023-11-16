@@ -16,7 +16,7 @@ const MovieListPage = (): React.ReactElement => {
       dispatch(loadMoviesActionCreator(movies));
     })();
   }, [dispatch, getMovies]);
-  
+
   return (
     <MovieListPageStyled>
       <h1 className="title">Choose a movie</h1>
