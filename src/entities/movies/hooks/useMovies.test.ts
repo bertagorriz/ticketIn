@@ -1,5 +1,5 @@
 import { renderHook } from "@testing-library/react";
-import { moviesMock } from "../../../mocks/moviesMock";
+import { moviesMock } from "../mocks/moviesMock";
 import { MovieStructure } from "../types";
 import useMovies from "./useMovies";
 import { wrapWithProviders } from "../../../utils/testUtils";
