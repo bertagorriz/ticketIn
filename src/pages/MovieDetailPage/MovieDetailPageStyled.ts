@@ -1,44 +1,49 @@
 import { styled } from "styled-components";
 
 const MovieDetailPageStyled = styled.main`
-  display: flex;
-  flex-direction: column;
   color: ${(props) => props.theme.colors.text};
   padding: 0;
+  margin: 0 -20px;
+
+  .movie-poster {
+    margin-top: 0px;
+  }
 
   .movie {
-    display: flex;
-    flex-direction: column;
-
-    &__poster {
-      position: relative;
-      margin: -20px;
-      margin-top: 0px;
-    }
+    background: linear-gradient(
+      180deg,
+      rgba(39, 40, 78, 0) 0%,
+      rgba(43, 43, 43, -1) -6%,
+      #2a2a2a 36%
+    );
+    position: absolute;
+    padding: 156px 20px;
+    margin-top: -445px;
   }
 
   .movie-info {
+    display: flex;
+    flex-direction: column;
+    padding-top: 112px;
+    gap: 25px;
+
     &__title {
       font-size: ${(props) => props.theme.fontSize.extraLarge};
       font-weight: ${(props) => props.theme.fontWeight.semiBold};
-      margin-bottom: 6px;
     }
 
     &__director {
       font-size: ${(props) => props.theme.fontSize.small};
       font-weight: ${(props) => props.theme.fontWeight.semiBold};
-      margin-bottom: 30px;
     }
 
     &__runtime,
     &__genre,
     &__synopsis {
       font-size: ${(props) => props.theme.fontSize.extraSmall};
-      margin-bottom: 2px;
     }
 
     &__synopsis {
-      margin-top: 30px;
       margin-bottom: 30px;
     }
   }
@@ -46,11 +51,11 @@ const MovieDetailPageStyled = styled.main`
   .movie-sessions {
     display: flex;
     flex-direction: column;
+    gap: 25px;
 
     &__title {
       font-size: ${(props) => props.theme.fontSize.small};
       font-weight: ${(props) => props.theme.fontWeight.semiBold};
-      margin-bottom: 20px;
     }
 
     &__button {
@@ -60,8 +65,6 @@ const MovieDetailPageStyled = styled.main`
       width: 87px;
       height: 48px;
       border-radius: 7px;
-      margin-top: 15px;
-      margin-bottom: 26px;
     }
   }
 `;
