@@ -19,8 +19,8 @@ const MovieListSkeleton = (): React.ReactElement => {
                 <MovieCardStyled className="movie">
                   <Skeleton
                     className="movie__poster"
-                    width="130px"
-                    height="190px"
+                    width={130}
+                    height={190}
                     duration={2}
                   />
                   <h1 className="movie__title">

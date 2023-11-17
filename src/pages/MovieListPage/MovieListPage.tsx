@@ -1,14 +1,15 @@
-import { useAppDispatch } from "../../store";
+import { useAppDispatch, useAppSelector } from "../../store";
 import MovieList from "../../components/MovieList/MovieList";
-import { loadMoviesActionCreator } from "../../entities/movies/moviesSlice/moviesSlice";
-
+import { loadMoviesActionCreator } from "../../entities/movies/slice/moviesSlice";
 import { useEffect } from "react";
 import MovieListPageStyled from "./MovieListPageStyled";
-import useMovies from "../../entities/movies/useMovies/useMovies";
+import useMovies from "../../entities/movies/hooks/useMovies";
+import MovieListSkeleton from "../../components/Loaders/MovieListLoading/MovieListSkeleton";
 
 const MovieListPage = (): React.ReactElement => {
   const { getMovies } = useMovies();
   const dispatch = useAppDispatch();
+  const { isLoading } = useAppSelector((store) => store.ui);
 
   useEffect(() => {
     (async () => {
@@ -16,11 +17,17 @@ const MovieListPage = (): React.ReactElement => {
       dispatch(loadMoviesActionCreator(movies));
     })();
   }, [dispatch, getMovies]);
-  
+
   return (
     <MovieListPageStyled>
-      <h1 className="title">Choose a movie</h1>
-      <MovieList />
+      {isLoading ? (
+        <MovieListSkeleton />
+      ) : (
+        <>
+          <h1 className="title">Choose a movie</h1>
+          <MovieList />
+        </>
+      )}
     </MovieListPageStyled>
   );
 };
