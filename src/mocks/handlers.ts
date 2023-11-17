@@ -7,10 +7,18 @@ export const handlers = [
   http.get(`${apiUrl}/movies`, () => {
     return HttpResponse.json(moviesMock, { status: 200 });
   }),
+
+  http.get(`${apiUrl}/movies/1`, () => {
+    return HttpResponse.json(moviesMock[1], { status: 200 });
+  }),
 ];
 
 export const errorHandlers = [
   http.get(`${apiUrl}/movies`, () => {
+    return HttpResponse.json(emptyMock, { status: 401 });
+  }),
+
+  http.get(`${apiUrl}/movies/1`, () => {
     return HttpResponse.json(emptyMock, { status: 401 });
   }),
 ];

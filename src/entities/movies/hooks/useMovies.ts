@@ -42,7 +42,7 @@ const useMovies = () => {
 
         return movie;
       } catch {
-        const error = "Sorry, movies couldn't be loaded";
+        const error = "Sorry, movie couldn't be loaded";
         showToast(error, "error");
         throw error;
       }
