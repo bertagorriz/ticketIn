@@ -6,6 +6,7 @@ const path: PathStructure = {
   sessions: "/sessions",
   seats: "/seats",
   tickets: "/tickets",
+  errorPage: "*",
 };
 
 export default path;
