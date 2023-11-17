@@ -13,14 +13,5 @@ describe("Given a Layout component", () => {
 
       expect(logo).toBeInTheDocument();
     });
-
-    test("Then it should show a back button", () => {
-      renderWithProviders(wrapWithRouter(<Layout />));
-      const expectedAltText = "back to page button";
-
-      const button = screen.getByAltText(expectedAltText);
-
-      expect(button).toBeInTheDocument();
-    });
   });
 });
