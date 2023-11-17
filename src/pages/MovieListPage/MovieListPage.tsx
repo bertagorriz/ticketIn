@@ -1,9 +1,9 @@
 import { useAppDispatch, useAppSelector } from "../../store";
 import MovieList from "../../components/MovieList/MovieList";
-import { loadMoviesActionCreator } from "../../entities/movies/moviesSlice/moviesSlice";
+import { loadMoviesActionCreator } from "../../entities/movies/slice/moviesSlice";
 import { useEffect } from "react";
 import MovieListPageStyled from "./MovieListPageStyled";
-import useMovies from "../../entities/movies/useMovies/useMovies";
+import useMovies from "../../entities/movies/hooks/useMovies";
 import MovieListSkeleton from "../../components/Loaders/MovieListLoading/MovieListSkeleton";
 
 const MovieListPage = (): React.ReactElement => {

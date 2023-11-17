@@ -4,7 +4,7 @@ import {
   configureStore,
 } from "@reduxjs/toolkit";
 import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
-import { moviesReducer } from "../entities/movies/moviesSlice/moviesSlice";
+import { moviesReducer } from "../entities/movies/slice/moviesSlice";
 import { uiReducer } from "../entities/ui/uiSlice";
 
 const rootReducer = combineReducers({

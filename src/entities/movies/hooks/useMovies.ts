@@ -9,7 +9,6 @@ import {
 } from "../../ui/uiSlice";
 import showToast from "../../../Toast/showToast";
 
-
 const apiUrl = import.meta.env.VITE_API_URL;
 
 const useMovies = () => {
@@ -34,7 +33,24 @@ const useMovies = () => {
     }
   }, [dispatch]);
 
-  return { getMovies };
+  const getOneMovie = useCallback(
+    async (id: string): Promise<MovieStructure> => {
+      try {
+        const { data: movie } = await axios.get<MovieStructure>(
+          `${apiUrl}${path.movies}/${id}`,
+        );
+
+        return movie;
+      } catch {
+        const error = "Sorry, movie couldn't be loaded";
+        showToast(error, "error");
+        throw error;
+      }
+    },
+    [],
+  );
+
+  return { getMovies, getOneMovie };
 };
 
 export default useMovies;

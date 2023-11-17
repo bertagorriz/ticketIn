@@ -7,7 +7,11 @@ const GlobalStyle = createGlobalStyle`
 
   html {
     font-family: ${(props) => props.theme.fonts.primary};
-  }  
+  }
+  
+  body {
+    background-color: ${(props) => props.theme.colors.background};
+  }
 
   body,
   h1,
