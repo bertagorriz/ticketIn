@@ -1,12 +1,12 @@
 import { useCallback } from "react";
-import { SessionStructure } from "../types";
+import { SessionStructure } from "../../types";
 import axios from "axios";
-import { useAppDispatch } from "../../../store";
+import { useAppDispatch } from "../../../../store";
 import {
   hideSkeletonActionCreator,
   showSkeletonActionCreator,
-} from "../../ui/uiSlice";
-import showToast from "../../../Toast/showToast";
+} from "../../../ui/uiSlice";
+import showToast from "../../../../Toast/showToast";
 
 const apiUrl = import.meta.env.VITE_API_URL;
 
