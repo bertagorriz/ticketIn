@@ -1,9 +1,8 @@
 import Skeleton from "react-loading-skeleton";
-import MovieDetailPageStyled from "../../../pages/MovieDetailPage/MovieDetailPageStyled";
 
 const MovieDetailSkeleton = (): React.ReactElement => {
   return (
-    <MovieDetailPageStyled>
+    <>
       <Skeleton
         className="movie-poster"
         width={320}
@@ -51,7 +50,7 @@ const MovieDetailSkeleton = (): React.ReactElement => {
           </span>
         </div>
       </section>
-    </MovieDetailPageStyled>
+    </>
   );
 };
 
