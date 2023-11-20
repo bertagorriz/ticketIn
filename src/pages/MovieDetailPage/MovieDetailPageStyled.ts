@@ -19,6 +19,7 @@ const MovieDetailPageStyled = styled.main`
     position: absolute;
     padding: 156px 20px 30px;
     margin-top: -445px;
+    min-width: 320px;
   }
 
   .movie-info {

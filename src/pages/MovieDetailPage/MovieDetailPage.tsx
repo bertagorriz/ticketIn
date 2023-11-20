@@ -1,15 +1,36 @@
+import { useEffect } from "react";
 import Button from "../../components/Button/Button";
-import { moviesMock } from "../../mocks/moviesMocks/moviesMock";
+import { useAppDispatch, useAppSelector } from "../../store";
 import MovieDetailPageStyled from "./MovieDetailPageStyled";
+import { loadMovieByIdActionCreator } from "../../entities/movies/slice/moviesSlice";
+import useMovies from "../../entities/movies/hooks/useMovies";
+import { useParams } from "react-router-dom";
 
 const MovieDetailPage = (): React.ReactElement => {
-  const movie = moviesMock[0];
+  const { id } = useParams();
+  const { getOneMovie } = useMovies();
+  const dispatch = useAppDispatch();
+  const movie = useAppSelector((store) => store.movies.selectedMovie);
+
+  scrollTo(0, 0);
+
+  useEffect(() => {
+    (async () => {
+      if (id) {
+        const selectedMovie = await getOneMovie(id);
+
+        if (selectedMovie) {
+          dispatch(loadMovieByIdActionCreator(selectedMovie));
+        }
+      }
+    })();
+  }, [dispatch, getOneMovie, id]);
 
   return (
     <MovieDetailPageStyled>
       <img
         className="movie-poster"
-        src="https://i.ibb.co/FDRMDLQ/barbie-big.webp"
+        src={movie.posterUrl[0]}
         alt=""
         width={320}
         height={467}
