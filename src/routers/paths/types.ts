@@ -4,6 +4,7 @@ interface PathStructure {
   sessions: string;
   seats: string;
   tickets: string;
+  errorPage: string;
 }
 
 export default PathStructure;

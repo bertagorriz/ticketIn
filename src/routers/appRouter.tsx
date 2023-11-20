@@ -3,6 +3,7 @@ import path from "./paths/paths";
 import App from "../components/App/App";
 import MovieListPage from "../pages/MovieListPage/MovieListPage";
 import MovieDetailPage from "../pages/MovieDetailPage/MovieDetailPage";
+import NotFoundPage from "../pages/NotFoundPage/NotFoundPage";
 
 const appRouter = createBrowserRouter([
   {
@@ -20,6 +21,10 @@ const appRouter = createBrowserRouter([
       {
         path: path.sessions,
         element: <MovieDetailPage />,
+      },
+      {
+        path: path.errorPage,
+        element: <NotFoundPage />,
       },
     ],
   },
