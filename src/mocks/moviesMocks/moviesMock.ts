@@ -29,4 +29,14 @@ export const moviesMock: MovieStructure[] = [
   },
 ];
 
-export const emptyMock: MovieStructure[] = [];
+export const emptyMoviesMock: MovieStructure[] = [];
+
+export const emptyMovieMock: MovieStructure = {
+  id: 0,
+  title: "",
+  director: "",
+  posterUrl: [],
+  synopsis: "",
+  runtime: "",
+  genre: "",
+};

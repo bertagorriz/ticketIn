@@ -9,7 +9,7 @@ describe("Given a MovieList component", () => {
       const totalMovies = 2;
 
       renderWithProviders(wrapWithRouter(<MovieList />), {
-        movies: { moviesData: moviesMock },
+        movies: { moviesData: moviesMock, selectedMovie: moviesMock[0] },
       });
 
       const expectedResult = screen.getAllByRole("article");

@@ -19,7 +19,7 @@ const appRouter = createBrowserRouter([
         element: <MovieListPage />,
       },
       {
-        path: path.sessions,
+        path: `${path.movies}${path.detail}`,
         element: <MovieDetailPage />,
       },
       {

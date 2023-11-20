@@ -3,6 +3,15 @@ import { MoviesState, MovieStructure } from "../types";
 
 const initialMoviesState: MoviesState = {
   moviesData: [],
+  selectedMovie: {
+    id: 0,
+    title: "",
+    director: "",
+    posterUrl: [],
+    synopsis: "",
+    runtime: "",
+    genre: "",
+  },
 };
 
 export const moviesSlice = createSlice({
@@ -16,9 +25,19 @@ export const moviesSlice = createSlice({
       ...currentMoviesState,
       moviesData: [...action.payload],
     }),
+    loadMovieById: (
+      currentMoviesState,
+      action: PayloadAction<MovieStructure>,
+    ): MoviesState => ({
+      ...currentMoviesState,
+      selectedMovie: action.payload,
+    }),
   },
 });
 
-export const { loadMovies: loadMoviesActionCreator } = moviesSlice.actions;
+export const {
+  loadMovies: loadMoviesActionCreator,
+  loadMovieById: loadMovieByIdActionCreator,
+} = moviesSlice.actions;
 
 export const moviesReducer = moviesSlice.reducer;

@@ -1,27 +1,30 @@
 import { screen } from "@testing-library/react";
-import { renderWithProviders } from "../../utils/testUtils";
 import MovieDetailPage from "./MovieDetailPage";
+import { renderWithProviders, wrapWithRouter } from "../../utils/testUtils";
+import { moviesMock } from "../../mocks/moviesMocks/moviesMock";
 
 const renderMovieDetailPage = () => {
-  renderWithProviders(<MovieDetailPage />);
+  renderWithProviders(wrapWithRouter(<MovieDetailPage />), {
+    movies: { moviesData: moviesMock, selectedMovie: moviesMock[0] },
+  });
 };
 
 describe("Given a MovieDetailPage component", () => {
   describe("When it is rendered", () => {
-    test("Then it should show the movie title 'Barbie'", () => {
-      renderMovieDetailPage();
-
+    test("Then it should show the movie title 'Barbie'", async () => {
       const expectedTitle = "Barbie";
 
-      const title = screen.getByRole("heading", { name: expectedTitle });
+      renderMovieDetailPage();
+
+      const title = await screen.getByRole("heading", { name: expectedTitle });
 
       expect(title).toBeInTheDocument();
     });
 
     test("Then it should show the movie director 'Greta Gerwig'", () => {
-      renderMovieDetailPage();
-
       const expectedDirector = "Greta Gerwig";
+
+      renderMovieDetailPage();
 
       const director = screen.getByRole("heading", { name: expectedDirector });
 
@@ -29,9 +32,9 @@ describe("Given a MovieDetailPage component", () => {
     });
 
     test("Then it should show a 'Sessions' title", () => {
-      renderMovieDetailPage();
-
       const expectedTitle = "Sessions";
+
+      renderMovieDetailPage();
 
       const title = screen.getByRole("heading", { name: expectedTitle });
 

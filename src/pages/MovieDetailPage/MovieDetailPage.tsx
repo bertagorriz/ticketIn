@@ -1,12 +1,32 @@
+import { useEffect } from "react";
 import Button from "../../components/Button/Button";
 import MovieDetailSkeleton from "../../components/Loaders/MovieDetailSkeleton/MovieDetailSkeleton";
-import { moviesMock } from "../../mocks/moviesMocks/moviesMock";
-import { useAppSelector } from "../../store";
+import { useAppDispatch, useAppSelector } from "../../store";
 import MovieDetailPageStyled from "./MovieDetailPageStyled";
+import { loadMovieByIdActionCreator } from "../../entities/movies/slice/moviesSlice";
+import useMovies from "../../entities/movies/hooks/useMovies";
+import { useParams } from "react-router-dom";
 
 const MovieDetailPage = (): React.ReactElement => {
   const { isLoading } = useAppSelector((store) => store.ui);
-  const movie = moviesMock[0];
+  const { id } = useParams();
+  const { getOneMovie } = useMovies();
+  const dispatch = useAppDispatch();
+  const movie = useAppSelector((store) => store.movies.selectedMovie);
+
+  scrollTo(0, 0);
+
+  useEffect(() => {
+    (async () => {
+      if (id) {
+        const selectedMovie = await getOneMovie(id);
+
+        if (selectedMovie) {
+          dispatch(loadMovieByIdActionCreator(selectedMovie));
+        }
+      }
+    })();
+  }, [dispatch, getOneMovie, id]);
 
   return (
     <MovieDetailPageStyled>
@@ -16,8 +36,8 @@ const MovieDetailPage = (): React.ReactElement => {
         <>
           <img
             className="movie-poster"
-            src="https://i.ibb.co/FDRMDLQ/barbie-big.webp"
-            alt=""
+            src={movie.posterUrl[0]}
+            alt="poster movie"
             width={320}
             height={467}
           />
@@ -38,9 +58,19 @@ const MovieDetailPage = (): React.ReactElement => {
             <div className="movie-sessions">
               <h2 className="movie-sessions__title">Sessions</h2>
               <span>DATE</span>
-              <Button classname="movie-sessions__button" text="18:30" />
+              <Button
+                classname="movie-sessions__button"
+                text="18:30"
+                ariaLabel="session button"
+                title="session button"
+              />
               <span>DATE</span>
-              <Button classname="movie-sessions__button" text="20:00" />
+              <Button
+                classname="movie-sessions__button"
+                text="20:00"
+                ariaLabel="session button"
+                title="session button"
+              />
             </div>
           </section>
         </>
