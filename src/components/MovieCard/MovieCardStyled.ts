@@ -8,6 +8,8 @@ const MovieCardStyled = styled.article`
   background-color: transparent;
 
   .movie {
+    display: contents;
+
     &__poster {
       border-radius: 15px;
     }

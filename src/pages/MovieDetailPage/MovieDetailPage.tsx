@@ -37,7 +37,7 @@ const MovieDetailPage = (): React.ReactElement => {
           <img
             className="movie-poster"
             src={movie.posterUrl[0]}
-            alt="poster movie"
+            alt="movie poster"
             width={320}
             height={467}
           />
