@@ -1,8 +1,8 @@
 import { screen } from "@testing-library/react";
 import { renderWithProviders } from "../../utils/testUtils";
 import MovieListPage from "./MovieListPage";
-import { server } from "../../mocks/moviesMocks/node";
-import { handlers } from "../../mocks/moviesMocks/handlers";
+import { server } from "../../mocks/node";
+import { handlers } from "../../mocks/handlers";
 
 const renderMovieListPage = () => {
   renderWithProviders(<MovieListPage />);

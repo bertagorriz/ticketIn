@@ -4,8 +4,8 @@ import { sessionsMock } from "../mocks/sessionsMock";
 import useSessions from "./useSessions";
 import { wrapWithProviders } from "../../../utils/testUtils";
 import { SessionsStructure } from "../types";
-import { server } from "../../../mocks/moviesMocks/node";
-import { errorHandlers } from "../../../mocks/moviesMocks/handlers";
+import { server } from "../../../mocks/node";
+import { errorHandlers } from "../../../mocks/handlers";
 
 describe("Given a useSessions function", () => {
   describe("When it calls the getSessions function", () => {
