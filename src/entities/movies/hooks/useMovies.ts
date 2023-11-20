@@ -36,18 +36,24 @@ const useMovies = () => {
   const getOneMovie = useCallback(
     async (id: string): Promise<MovieStructure> => {
       try {
+        dispatch(showSkeletonActionCreator());
+
         const { data: movie } = await axios.get<MovieStructure>(
           `${apiUrl}${path.movies}/${id}`,
         );
 
+        dispatch(hideSkeletonActionCreator());
+
         return movie;
       } catch {
+        dispatch(hideSkeletonActionCreator());
+
         const error = "Sorry, movie couldn't be loaded";
         showToast(error, "error");
         throw error;
       }
     },
-    [],
+    [dispatch],
   );
 
   return { getMovies, getOneMovie };

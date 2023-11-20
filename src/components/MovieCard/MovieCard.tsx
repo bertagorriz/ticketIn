@@ -12,7 +12,7 @@ const MovieCard = ({
 }: MovieCardProps): React.ReactElement => {
   return (
     <MovieCardStyled className="movie">
-      <Link to={`${path.movies}/${id}`}>
+      <Link to={`${path.movies}/${id}`} className="movie">
         <img
           className="movie__poster"
           src={posterUrl[1]}
