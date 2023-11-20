@@ -4,6 +4,7 @@ interface ButtonProps {
   classname: string;
   actionOnClick?: () => void;
   disabled?: boolean;
+  children?: React.ReactElement;
   title?: string;
   ariaLabel?: string;
 }
@@ -16,6 +17,7 @@ const Button = ({
   disabled,
   title,
   ariaLabel,
+  children,
 }: ButtonProps): React.ReactElement => {
   return (
     <button
@@ -27,6 +29,7 @@ const Button = ({
     >
       {text}
       {image}
+      {children}
     </button>
   );
 };
