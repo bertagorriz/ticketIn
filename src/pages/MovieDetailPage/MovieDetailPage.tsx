@@ -50,9 +50,19 @@ const MovieDetailPage = (): React.ReactElement => {
         <div className="movie-sessions">
           <h2 className="movie-sessions__title">Sessions</h2>
           <span>DATE</span>
-          <Button classname="movie-sessions__button" text="18:30" />
+          <Button
+            classname="movie-sessions__button"
+            text="18:30"
+            ariaLabel="session button"
+            title="session button"
+          />
           <span>DATE</span>
-          <Button classname="movie-sessions__button" text="20:00" />
+          <Button
+            classname="movie-sessions__button"
+            text="20:00"
+            ariaLabel="session button"
+            title="session button"
+          />
         </div>
       </section>
     </MovieDetailPageStyled>
