@@ -1,9 +1,9 @@
 import { screen } from "@testing-library/react";
-import { renderWithProviders } from "../../utils/testUtils";
+import { renderWithProviders, wrapWithRouter } from "../../utils/testUtils";
 import MovieDetailPage from "./MovieDetailPage";
 
 const renderMovieDetailPage = () => {
-  renderWithProviders(<MovieDetailPage />);
+  renderWithProviders(wrapWithRouter(<MovieDetailPage />));
 };
 
 describe("Given a MovieDetailPage component", () => {
