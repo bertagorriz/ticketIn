@@ -1,9 +1,18 @@
 import { NavLink, useLocation } from "react-router-dom";
 import NavbarStyled from "./NavbarStyled";
 import path from "../../routers/paths/paths";
+import { useMemo } from "react";
 
 const Navbar = (): React.ReactElement => {
-  const location = useLocation();
+  const { pathname } = useLocation();
+
+  const isPathname = useMemo(() => {
+    return (
+      pathname === path.sessions ||
+      pathname === path.tickets ||
+      pathname === path.seats
+    );
+  }, [pathname]);
 
   return (
     <NavbarStyled>
@@ -15,7 +24,7 @@ const Navbar = (): React.ReactElement => {
           height="28.05"
         />
       </NavLink>
-      {location.pathname !== path.movies && (
+      {isPathname && (
         <button className="navbar-container__backtopage-button">
           <img
             src="/images/navbar/back-to-page-icon.svg"

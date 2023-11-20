@@ -1,10 +1,10 @@
 import { http, HttpResponse } from "msw";
-import { emptyMock, moviesMock } from "../entities/movies/mocks/moviesMock";
-import path from "../routers/paths/paths";
+import { emptyMock, moviesMock } from "../../entities/movies/mocks/moviesMock";
+import path from "../../routers/paths/paths";
 import {
   emptySessionsMock,
   sessionsMock,
-} from "../entities/sessions/mocks/sessionsMock";
+} from "../../entities/sessions/mocks/sessionsMock";
 
 const apiUrl = import.meta.env.VITE_API_URL;
 

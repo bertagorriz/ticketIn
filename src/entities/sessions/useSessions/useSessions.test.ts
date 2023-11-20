@@ -1,15 +1,16 @@
 import { renderHook } from "@testing-library/react";
 import { sessionsMock } from "../mocks/sessionsMock";
-import { SessionStructure } from "../types";
+
 import useSessions from "./useSessions";
 import { wrapWithProviders } from "../../../utils/testUtils";
-import { server } from "../../../mocks/node";
-import { errorHandlers } from "../../../mocks/handlers";
+import { SessionsStructure } from "../types";
+import { server } from "../../../mocks/moviesMocks/node";
+import { errorHandlers } from "../../../mocks/moviesMocks/handlers";
 
 describe("Given a useSessions function", () => {
   describe("When it calls the getSessions function", () => {
     test("Then it should return a list of two sessions", async () => {
-      const sessionList: SessionStructure[] = sessionsMock;
+      const sessionList: SessionsStructure[] = sessionsMock;
 
       const {
         result: {
