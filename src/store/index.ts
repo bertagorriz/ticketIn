@@ -6,10 +6,12 @@ import {
 import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
 import { moviesReducer } from "../entities/movies/slice/moviesSlice";
 import { uiReducer } from "../entities/ui/uiSlice";
+import { sessionsReducer } from "../entities/sessions/slice/sessionsSlice";
 
 const rootReducer = combineReducers({
   movies: moviesReducer,
   ui: uiReducer,
+  sessions: sessionsReducer,
 });
 
 export const setupStore = (preloadedState?: PreloadedState<RootState>) => {

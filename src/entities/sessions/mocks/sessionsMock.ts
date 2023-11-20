@@ -1,6 +1,6 @@
-import { SessionStructure } from "../types";
+import { SessionsStructure } from "../types";
 
-export const sessionsMock: SessionStructure[] = [
+export const sessionsMock: SessionsStructure[] = [
   {
     id: 1,
     movieId: 1,
@@ -15,4 +15,4 @@ export const sessionsMock: SessionStructure[] = [
   },
 ];
 
-export const emptySessionsMock: SessionStructure[] = [];
+export const emptySessionsMock: SessionsStructure[] = [];
