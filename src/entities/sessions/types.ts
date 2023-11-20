@@ -4,3 +4,7 @@ export interface SessionsStructure {
   dates: string[];
   price: number;
 }
+
+export interface SessionsState {
+  sessionsData: SessionsStructure[];
+}
