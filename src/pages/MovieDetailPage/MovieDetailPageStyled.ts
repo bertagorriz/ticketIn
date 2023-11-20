@@ -17,7 +17,7 @@ const MovieDetailPageStyled = styled.main`
       #2a2a2a 36%
     );
     position: absolute;
-    padding: 156px 20px;
+    padding: 156px 20px 30px;
     margin-top: -445px;
   }
 
