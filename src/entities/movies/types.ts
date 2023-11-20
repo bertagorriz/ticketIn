@@ -10,4 +10,5 @@ export interface MovieStructure {
 
 export interface MoviesState {
   moviesData: MovieStructure[];
+  selectedMovie: MovieStructure;
 }

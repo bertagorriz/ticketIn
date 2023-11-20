@@ -1,18 +1,17 @@
 import { screen } from "@testing-library/react";
-import { renderWithProviders } from "../../utils/testUtils";
+import { renderWithProviders, wrapWithRouter } from "../../utils/testUtils";
 import MovieListPage from "./MovieListPage";
-import { server } from "../../mocks/node";
-import { handlers } from "../../mocks/handlers";
+import { moviesMock } from "../../mocks/moviesMocks/moviesMock";
 
 const renderMovieListPage = () => {
-  renderWithProviders(<MovieListPage />);
+  renderWithProviders(wrapWithRouter(<MovieListPage />), {
+    movies: { moviesData: moviesMock, selectedMovie: moviesMock[0] },
+  });
 };
 
 describe("Given a MovieListPage", () => {
   describe("When it is rendered", () => {
     test("Then it should show a title with the text 'Choose a movie'", async () => {
-      server.resetHandlers(...handlers);
-
       const expectedTitle = "Choose a movie";
 
       renderMovieListPage();
@@ -23,8 +22,6 @@ describe("Given a MovieListPage", () => {
     });
 
     test("Then it shouldn't show a title with the text 'Choose a movie'", () => {
-      server.resetHandlers(...handlers);
-
       const expectedTitle = "Choose a movie";
 
       renderMovieListPage();

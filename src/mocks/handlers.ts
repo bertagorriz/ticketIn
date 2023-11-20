@@ -1,5 +1,8 @@
 import { http, HttpResponse } from "msw";
-import { emptyMock, moviesMock } from "../entities/movies/mocks/moviesMock";
+import {
+  emptyMovieMock,
+  moviesMock,
+} from "../entities/movies/mocks/moviesMock";
 import path from "../routers/paths/paths";
 import {
   emptySessionsMock,
@@ -24,11 +27,11 @@ export const handlers = [
 
 export const errorHandlers = [
   http.get(`${apiUrl}${path.movies}`, () => {
-    return HttpResponse.json(emptyMock, { status: 401 });
+    return HttpResponse.json(emptyMovieMock, { status: 401 });
   }),
 
   http.get(`${apiUrl}${path.movies}/1`, () => {
-    return HttpResponse.json(emptyMock, { status: 401 });
+    return HttpResponse.json(emptyMovieMock, { status: 401 });
   }),
 
   http.get(`${apiUrl}/sessions`, () => {
