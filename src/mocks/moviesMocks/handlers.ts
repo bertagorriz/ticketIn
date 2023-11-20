@@ -1,5 +1,8 @@
 import { http, HttpResponse } from "msw";
-import { emptyMock, moviesMock } from "../../entities/movies/mocks/moviesMock";
+import {
+  emptyMoviesListMock,
+  moviesMock,
+} from "../../entities/movies/mocks/moviesMock";
 
 const apiUrl = import.meta.env.VITE_API_URL;
 
@@ -15,10 +18,10 @@ export const handlers = [
 
 export const errorHandlers = [
   http.get(`${apiUrl}/movies`, () => {
-    return HttpResponse.json(emptyMock, { status: 401 });
+    return HttpResponse.json(emptyMoviesListMock, { status: 401 });
   }),
 
   http.get(`${apiUrl}/movies/1`, () => {
-    return HttpResponse.json(emptyMock, { status: 401 });
+    return HttpResponse.json(emptyMoviesListMock, { status: 401 });
   }),
 ];
