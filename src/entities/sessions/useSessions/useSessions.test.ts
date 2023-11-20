@@ -3,9 +3,11 @@ import { sessionsMock } from "../mocks/sessionsMock";
 import { SessionStructure } from "../types";
 import useSessions from "./useSessions";
 import { wrapWithProviders } from "../../../utils/testUtils";
+import { server } from "../../../mocks/node";
+import { errorHandlers } from "../../../mocks/handlers";
 
-describe("Given a getSessions function", () => {
-  describe("When it is invoked", () => {
+describe("Given a useSessions function", () => {
+  describe("When it calls the getSessions function", () => {
     test("Then it should return a list of two sessions", async () => {
       const sessionList: SessionStructure[] = sessionsMock;
 
@@ -18,6 +20,20 @@ describe("Given a getSessions function", () => {
       const expectedSessionList = await getSessions();
 
       expect(expectedSessionList).toStrictEqual(sessionList);
+    });
+  });
+
+  describe("When the getSessions function is called and an error occurs", () => {
+    test("Then it should throw an error", () => {
+      server.resetHandlers(...errorHandlers);
+
+      const {
+        result: {
+          current: { getSessions },
+        },
+      } = renderHook(() => useSessions(), { wrapper: wrapWithProviders });
+
+      expect(getSessions()).rejects.toThrowError();
     });
   });
 });
