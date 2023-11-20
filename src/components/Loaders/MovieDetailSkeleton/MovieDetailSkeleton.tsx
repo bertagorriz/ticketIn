@@ -14,7 +14,7 @@ const MovieDetailSkeleton = (): React.ReactElement => {
       <section className="movie">
         <div className="movie-info">
           <div>
-            <h1 className="movie-info__title">
+            <h1 className="movie-info__title" aria-label="skeleton">
               <Skeleton width={150} duration={2} />
             </h1>
             <h2 className="movie-info__director">
