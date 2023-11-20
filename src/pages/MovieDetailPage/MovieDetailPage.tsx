@@ -5,10 +5,13 @@ import MovieDetailPageStyled from "./MovieDetailPageStyled";
 import { loadMovieByIdActionCreator } from "../../entities/movies/slice/moviesSlice";
 import useMovies from "../../entities/movies/hooks/useMovies";
 import { useParams } from "react-router-dom";
+import useSessions from "../../entities/sessions/hooks/useSessions/useSessions";
+import { loadSessionsActionCreator } from "../../entities/sessions/slice/sessionsSlice";
 
 const MovieDetailPage = (): React.ReactElement => {
   const { id } = useParams();
   const { getOneMovie } = useMovies();
+  const { getSessions } = useSessions();
   const dispatch = useAppDispatch();
   const movie = useAppSelector((store) => store.movies.selectedMovie);
 
@@ -18,13 +21,15 @@ const MovieDetailPage = (): React.ReactElement => {
     (async () => {
       if (id) {
         const selectedMovie = await getOneMovie(id);
+        const sessions = await getSessions();
 
         if (selectedMovie) {
           dispatch(loadMovieByIdActionCreator(selectedMovie));
+          dispatch(loadSessionsActionCreator(sessions));
         }
       }
     })();
-  }, [dispatch, getOneMovie, id]);
+  }, [dispatch, getOneMovie, id, getSessions]);
 
   return (
     <MovieDetailPageStyled>
