@@ -35,7 +35,7 @@ const GlobalStyle = createGlobalStyle`
   ul {
     list-style: none;
     padding-left: 0;
-    margin-bottom: 0;
+    margin: 0;
   }
 
   button {

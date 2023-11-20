@@ -1,5 +1,5 @@
 import { http, HttpResponse } from "msw";
-import { emptyMock, moviesMock } from "../entities/movies/mocks/moviesMock";
+import { emptyMock, moviesMock } from "../../entities/movies/mocks/moviesMock";
 
 const apiUrl = import.meta.env.VITE_API_URL;
 
