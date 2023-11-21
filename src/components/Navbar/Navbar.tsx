@@ -2,17 +2,19 @@ import { NavLink, useLocation } from "react-router-dom";
 import NavbarStyled from "./NavbarStyled";
 import path from "../../routers/paths/paths";
 import { useMemo } from "react";
+import { useAppSelector } from "../../store";
 
 const Navbar = (): React.ReactElement => {
   const { pathname } = useLocation();
+  const { selectedMovie } = useAppSelector((store) => store.movies);
 
   const isPathname = useMemo(() => {
     return (
-      pathname === path.sessions ||
       pathname === path.tickets ||
-      pathname === path.seats
+      pathname === path.seats ||
+      pathname === `${path.movies}/${selectedMovie.id}`
     );
-  }, [pathname]);
+  }, [pathname, selectedMovie]);
 
   return (
     <NavbarStyled>
