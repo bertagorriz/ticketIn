@@ -3,7 +3,7 @@ import { renderWithProviders, wrapWithRouter } from "../../utils/testUtils";
 import Navbar from "./Navbar";
 import path from "../../routers/paths/paths";
 import { RouterProvider, createMemoryRouter } from "react-router-dom";
-import { moviesMock } from "../../mocks/moviesMocks/moviesMock";
+import { moviesMock } from "../../entities/movies/mocks/moviesMock";
 
 describe("Given a Navbar component", () => {
   describe("When it is rendered", () => {
