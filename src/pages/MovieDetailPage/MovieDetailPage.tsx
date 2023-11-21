@@ -34,13 +34,15 @@ const MovieDetailPage = (): React.ReactElement => {
         <MovieDetailSkeleton />
       ) : (
         <>
-          <img
-            className="movie-poster"
-            src={movie.posterUrl[0]}
-            alt="movie poster"
-            width={320}
-            height={467}
-          />
+          <div>
+            <img
+              className="movie-poster"
+              src={movie.posterUrl[0]}
+              alt="movie poster"
+              width={320}
+              height={467}
+            />
+          </div>
           <section className="movie">
             <div className="movie-info">
               <div>
