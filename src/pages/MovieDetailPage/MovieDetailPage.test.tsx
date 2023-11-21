@@ -1,7 +1,7 @@
 import { screen } from "@testing-library/react";
 import MovieDetailPage from "./MovieDetailPage";
 import { renderWithProviders, wrapWithRouter } from "../../utils/testUtils";
-import { moviesMock } from "../../mocks/moviesMocks/moviesMock";
+import { moviesMock } from "../../entities/movies/mocks/moviesMock";
 
 const renderMovieDetailPage = (boolean: boolean) => {
   renderWithProviders(wrapWithRouter(<MovieDetailPage />), {
