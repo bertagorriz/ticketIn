@@ -11,9 +11,10 @@ import { loadSessionsActionCreator } from "../../entities/sessions/slice/session
 const MovieDetailPage = (): React.ReactElement => {
   const { id } = useParams();
   const { getOneMovie } = useMovies();
-  const { getSessions } = useSessions();
+  const { getSessionsByMovie } = useSessions();
   const dispatch = useAppDispatch();
   const movie = useAppSelector((store) => store.movies.selectedMovie);
+  const sessions = useAppSelector((store) => store.sessions.sessionsData.dates);
 
   scrollTo(0, 0);
 
@@ -21,7 +22,7 @@ const MovieDetailPage = (): React.ReactElement => {
     (async () => {
       if (id) {
         const selectedMovie = await getOneMovie(id);
-        const sessions = await getSessions();
+        const sessions = await getSessionsByMovie(id);
 
         if (selectedMovie) {
           dispatch(loadMovieByIdActionCreator(selectedMovie));
@@ -29,7 +30,7 @@ const MovieDetailPage = (): React.ReactElement => {
         }
       }
     })();
-  }, [dispatch, getOneMovie, id, getSessions]);
+  }, [dispatch, getOneMovie, id, getSessionsByMovie]);
 
   return (
     <MovieDetailPageStyled>
@@ -54,20 +55,19 @@ const MovieDetailPage = (): React.ReactElement => {
         </div>
         <div className="movie-sessions">
           <h2 className="movie-sessions__title">Sessions</h2>
-          <span>DATE</span>
-          <Button
-            classname="movie-sessions__button"
-            text="18:30"
-            ariaLabel="session button"
-            title="session button"
-          />
-          <span>DATE</span>
-          <Button
-            classname="movie-sessions__button"
-            text="20:00"
-            ariaLabel="session button"
-            title="session button"
-          />
+          <ul>
+            {sessions.map((session, position) => (
+              <li className="movie-sessions__info" key={position}>
+                <span>{session}</span>
+                <Button
+                  classname="movie-sessions__button"
+                  text="18:30"
+                  ariaLabel="session button"
+                  title="session button"
+                />
+              </li>
+            ))}
+          </ul>
         </div>
       </section>
     </MovieDetailPageStyled>
