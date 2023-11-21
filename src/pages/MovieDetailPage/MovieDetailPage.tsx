@@ -7,6 +7,7 @@ import useMovies from "../../entities/movies/hooks/useMovies";
 import { useParams } from "react-router-dom";
 import useSessions from "../../entities/sessions/hooks/useSessions/useSessions";
 import { loadSessionsActionCreator } from "../../entities/sessions/slice/sessionsSlice";
+import convertDateTime from "../../convertDates/convertDates";
 
 const MovieDetailPage = (): React.ReactElement => {
   const { id } = useParams();
@@ -58,10 +59,14 @@ const MovieDetailPage = (): React.ReactElement => {
           <ul>
             {sessions.map((session, position) => (
               <li className="movie-sessions__info" key={position}>
-                <span>{session}</span>
+                <span>
+                  {`${convertDateTime(session)[1].toUpperCase()} ${
+                    convertDateTime(session)[2]
+                  }`}
+                </span>
                 <Button
                   classname="movie-sessions__button"
-                  text="18:30"
+                  text={convertDateTime(session)[0]}
                   ariaLabel="session button"
                   title="session button"
                 />

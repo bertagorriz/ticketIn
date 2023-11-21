@@ -1,9 +1,13 @@
 const convertDateTime = (dateTime: string) => {
-  const [date, time] = dateTime.split("T");
-  const [year, month, day] = date.split("-");
-  const [hour, minute] = time.split(":");
+  const date = new Date(dateTime);
 
-  return [day, month, year, hour, minute];
+  return [
+    `${date.getHours()}:${
+      date.getMinutes() < 10 ? `0${date.getMinutes()}` : date.getMinutes()
+    }`,
+    `${date.toLocaleDateString("en-US", { weekday: "long" })}`,
+    `${date.getDate()}`,
+  ];
 };
 
 export default convertDateTime;
