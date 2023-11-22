@@ -6,6 +6,11 @@ const SeatsListStyled = styled.div`
   flex-direction: column;
   gap: 30px;
   .seats {
+    &__screen {
+      margin: 0 auto;
+      max-width: 280px;
+    }
+
     &__row {
       display: flex;
       flex-direction: row;
