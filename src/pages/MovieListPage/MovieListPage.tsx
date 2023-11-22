@@ -24,7 +24,9 @@ const MovieListPage = (): React.ReactElement => {
         <MovieListSkeleton />
       ) : (
         <>
-          <h1 className="title">Choose a movie</h1>
+          <div className="box">
+            <h1 className="box__title">Choose a movie</h1>
+          </div>
           <MovieList />
         </>
       )}
