@@ -27,6 +27,7 @@ const MovieDetailPageStyled = styled.main`
     padding: 156px 20px 30px;
     margin-top: -445px;
     min-width: 320px;
+    max-width: 700px;
   }
 
   .movie-info {

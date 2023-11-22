@@ -4,6 +4,7 @@ const ContainerStyled = styled.div`
   margin: auto;
   padding: 0 20px 30px 20px;
   min-width: 320px;
+  max-width: 700px;
   min-height: 100vh;
   background-color: ${(props) => props.theme.colors.background};
 `;
