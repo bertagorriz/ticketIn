@@ -9,8 +9,8 @@ const theme: DefaultTheme = {
     text: "#fff",
     hover: "#585858",
     available: "#f2f2f2",
-    selected: "#cb2b2b",
-    reserved: "#098f3e",
+    reserved: "#cb2b2b",
+    selected: "#098f3e",
   },
   fonts: {
     primary: "Inter",
