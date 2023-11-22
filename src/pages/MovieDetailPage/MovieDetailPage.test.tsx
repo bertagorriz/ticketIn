@@ -2,11 +2,17 @@ import { screen } from "@testing-library/react";
 import MovieDetailPage from "./MovieDetailPage";
 import { renderWithProviders, wrapWithRouter } from "../../utils/testUtils";
 import { moviesMock } from "../../entities/movies/mocks/moviesMock";
+import { sessionsMock } from "../../entities/sessions/mocks/sessionsMock";
+
+beforeEach(() => {
+  vi.clearAllMocks();
+});
 
 const renderMovieDetailPage = (boolean: boolean) => {
   renderWithProviders(wrapWithRouter(<MovieDetailPage />), {
     movies: { moviesData: moviesMock, selectedMovie: moviesMock[0] },
     ui: { isLoading: boolean },
+    sessions: { sessionsData: sessionsMock[0] },
   });
 };
 
@@ -32,7 +38,7 @@ describe("Given a MovieDetailPage component", () => {
       expect(director).toBeInTheDocument();
     });
 
-    test("Then it shouldn't show a 'Sessions' title", () => {
+    test("Then it shouldn't show a 'Sessions' title while the skeleton is being shown", () => {
       const expectedTitle = "Sessions";
 
       renderMovieDetailPage(true);
@@ -40,6 +46,17 @@ describe("Given a MovieDetailPage component", () => {
       const title = screen.queryByRole("heading", { name: expectedTitle });
 
       expect(title).not.toBeInTheDocument();
+    });
+    test("Then it should show the sessions' information", async () => {
+      const expectedSessionInformation = "WEDNESDAY 15";
+
+      renderMovieDetailPage(false);
+
+      const sessionInformation = await screen.getByText(
+        expectedSessionInformation,
+      );
+
+      expect(sessionInformation).toBeInTheDocument();
     });
   });
 });
