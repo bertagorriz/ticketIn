@@ -2,12 +2,14 @@ import { screen } from "@testing-library/react";
 import { renderWithProviders, wrapWithRouter } from "../../utils/testUtils";
 import SeatsList from "./SeatsList";
 
+beforeEach(() => {
+  renderWithProviders(wrapWithRouter(<SeatsList />));
+});
+
 describe("Given a SeatsList component", () => {
   describe("When it is rendered", () => {
     test("Then it should show a list of four rows each with five seats", () => {
       const totalSeats = 20;
-
-      renderWithProviders(wrapWithRouter(<SeatsList />));
 
       const expectedSeats = screen.getAllByRole("img", { name: "seat" });
 
@@ -18,8 +20,6 @@ describe("Given a SeatsList component", () => {
       const availableText = "available seat color";
       const selectedText = "selected seat color";
       const reservedText = "reserved seat color";
-
-      renderWithProviders(wrapWithRouter(<SeatsList />));
 
       const expectedAvailableLegend = screen.getByRole("img", {
         name: availableText,
@@ -34,6 +34,16 @@ describe("Given a SeatsList component", () => {
       expect(expectedAvailableLegend).toBeInTheDocument();
       expect(expectedSelectedLegend).toBeInTheDocument();
       expect(expectedReservedLegend).toBeInTheDocument();
+    });
+
+    test("Then it should show the cinema screen", () => {
+      const screenText = "screen";
+
+      const expectedScreen = screen.getByRole("img", {
+        name: screenText,
+      });
+
+      expect(expectedScreen).toBeInTheDocument();
     });
   });
 });
