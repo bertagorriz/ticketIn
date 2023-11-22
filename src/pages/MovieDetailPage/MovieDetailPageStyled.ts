@@ -5,8 +5,15 @@ const MovieDetailPageStyled = styled.main`
   padding: 0;
   margin: 0 -20px;
 
+  > div {
+    display: flex;
+    justify-content: center;
+  }
+
   .movie-poster {
     margin-top: 0px;
+    height: 100%;
+    min-width: 100%;
   }
 
   .movie {

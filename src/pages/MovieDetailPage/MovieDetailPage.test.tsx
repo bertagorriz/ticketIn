@@ -1,22 +1,23 @@
 import { screen } from "@testing-library/react";
 import MovieDetailPage from "./MovieDetailPage";
 import { renderWithProviders, wrapWithRouter } from "../../utils/testUtils";
-import { moviesMock } from "../../mocks/moviesMocks/moviesMock";
+import { moviesMock } from "../../entities/movies/mocks/moviesMock";
 
-const renderMovieDetailPage = () => {
+const renderMovieDetailPage = (boolean: boolean) => {
   renderWithProviders(wrapWithRouter(<MovieDetailPage />), {
     movies: { moviesData: moviesMock, selectedMovie: moviesMock[0] },
+    ui: { isLoading: boolean },
   });
 };
 
 describe("Given a MovieDetailPage component", () => {
   describe("When it is rendered", () => {
-    test("Then it should show the movie title 'Barbie'", async () => {
+    test("Then it should show the movie title 'Barbie'", () => {
       const expectedTitle = "Barbie";
 
-      renderMovieDetailPage();
+      renderMovieDetailPage(false);
 
-      const title = await screen.getByRole("heading", { name: expectedTitle });
+      const title = screen.getByRole("heading", { name: expectedTitle });
 
       expect(title).toBeInTheDocument();
     });
@@ -24,21 +25,21 @@ describe("Given a MovieDetailPage component", () => {
     test("Then it should show the movie director 'Greta Gerwig'", () => {
       const expectedDirector = "Greta Gerwig";
 
-      renderMovieDetailPage();
+      renderMovieDetailPage(false);
 
       const director = screen.getByRole("heading", { name: expectedDirector });
 
       expect(director).toBeInTheDocument();
     });
 
-    test("Then it should show a 'Sessions' title", () => {
+    test("Then it shouldn't show a 'Sessions' title", () => {
       const expectedTitle = "Sessions";
 
-      renderMovieDetailPage();
+      renderMovieDetailPage(true);
 
-      const title = screen.getByRole("heading", { name: expectedTitle });
+      const title = screen.queryByRole("heading", { name: expectedTitle });
 
-      expect(title).toBeInTheDocument();
+      expect(title).not.toBeInTheDocument();
     });
   });
 });

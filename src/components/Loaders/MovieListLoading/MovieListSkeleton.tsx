@@ -13,7 +13,7 @@ const MovieListSkeleton = (): React.ReactElement => {
       <MoviesListStyled>
         <ul className="cards-list opacity">
           {Array(6)
-            .fill(6)
+            .fill("cards")
             .map((_movie, position) => (
               <li key={position}>
                 <MovieCardStyled className="movie">
