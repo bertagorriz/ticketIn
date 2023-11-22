@@ -3,6 +3,11 @@ import SeatsListStyled from "./SeatsListStyled";
 const SeatsList = (): React.ReactElement => {
   return (
     <SeatsListStyled className="seats">
+      <img
+        className="seats__screen"
+        src="/images/seats/screen.svg"
+        alt="screen"
+      />
       {Array(4)
         .fill("row")
         .map((_row, position) => (
