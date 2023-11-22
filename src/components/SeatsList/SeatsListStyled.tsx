@@ -12,6 +12,20 @@ const SeatsListStyled = styled.div`
       justify-content: center;
       gap: 20px;
     }
+
+    &__legend {
+      display: flex;
+      justify-content: center;
+      gap: 14px;
+      color: ${(props) => props.theme.colors.text};
+
+      &--available,
+      &--selected,
+      &--reserved {
+        display: flex;
+        gap: 5px;
+      }
+    }
   }
 `;
 
