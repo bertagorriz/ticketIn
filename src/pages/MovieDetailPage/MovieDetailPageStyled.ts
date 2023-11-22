@@ -61,6 +61,12 @@ const MovieDetailPageStyled = styled.main`
     flex-direction: column;
     gap: 25px;
 
+    &__info {
+      display: flex;
+      flex-direction: column;
+      gap: 25px;
+    }
+
     &__title {
       font-size: ${(props) => props.theme.fontSize.small};
       font-weight: ${(props) => props.theme.fontWeight.semiBold};
@@ -73,6 +79,7 @@ const MovieDetailPageStyled = styled.main`
       width: 87px;
       height: 48px;
       border-radius: 7px;
+      margin-bottom: 25px;
     }
   }
 `;

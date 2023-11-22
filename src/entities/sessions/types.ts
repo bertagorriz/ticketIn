@@ -6,5 +6,5 @@ export interface SessionsStructure {
 }
 
 export interface SessionsState {
-  sessionsData: SessionsStructure[];
+  sessionsData: SessionsStructure;
 }

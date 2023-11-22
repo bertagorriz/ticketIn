@@ -8,19 +8,20 @@ import { server } from "../../../../mocks/node";
 import { errorHandlers } from "../../../../mocks/handlers";
 
 describe("Given a useSessions function", () => {
-  describe("When it calls the getSessions function", () => {
-    test("Then it should return a list of two sessions", async () => {
-      const sessionList: SessionsStructure[] = sessionsMock;
+  const movieId = "1";
+  describe("When it calls the getSessionsByMovie function", () => {
+    test("Then it should return a session information", async () => {
+      const session: SessionsStructure = sessionsMock[0];
 
       const {
         result: {
-          current: { getSessions },
+          current: { getSessionsByMovie },
         },
       } = renderHook(() => useSessions(), { wrapper: wrapWithProviders });
 
-      const expectedSessionList = await getSessions();
+      const expectedSession = await getSessionsByMovie(movieId);
 
-      expect(expectedSessionList).toStrictEqual(sessionList);
+      expect(expectedSession).toStrictEqual(session);
     });
   });
 
@@ -30,11 +31,11 @@ describe("Given a useSessions function", () => {
 
       const {
         result: {
-          current: { getSessions },
+          current: { getSessionsByMovie },
         },
       } = renderHook(() => useSessions(), { wrapper: wrapWithProviders });
 
-      expect(getSessions()).rejects.toThrowError();
+      expect(getSessionsByMovie(movieId)).rejects.toThrowError();
     });
   });
 });
