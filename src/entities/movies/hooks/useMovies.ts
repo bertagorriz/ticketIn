@@ -7,7 +7,7 @@ import {
   hideSkeletonActionCreator,
   showSkeletonActionCreator,
 } from "../../ui/uiSlice";
-import showToast from "../../../pata/showToast";
+import showToast from "../../../toast/showToast";
 
 const apiUrl = import.meta.env.VITE_API_URL;
 
