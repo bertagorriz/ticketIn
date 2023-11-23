@@ -22,7 +22,28 @@ const useSeats = () => {
     },
     [],
   );
-  return { getSeatsBySession };
+
+  const updateSeat = async (
+    id: string,
+    dataSeat: SeatsStructure,
+  ): Promise<SeatsStructure> => {
+    try {
+      const {
+        data: { updatedSeat },
+      } = await axios.put<{ updatedSeat: SeatsStructure }>(
+        `${apiUrl}${path.seats}/${id}`,
+        dataSeat,
+      );
+
+      return updatedSeat;
+    } catch {
+      const error = "Sorry, selected seats can't be reserved ";
+      showToast(error, "error");
+      throw error;
+    }
+  };
+
+  return { getSeatsBySession, updateSeat };
 };
 
 export default useSeats;
