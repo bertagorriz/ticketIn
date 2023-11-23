@@ -1,6 +1,5 @@
 import { renderHook } from "@testing-library/react";
 import { sessionsMock } from "../../mocks/sessionsMock";
-
 import useSessions from "./useSessions";
 import { wrapWithProviders } from "../../../../utils/testUtils";
 import { SessionsStructure } from "../../types";
@@ -25,7 +24,7 @@ describe("Given a useSessions function", () => {
     });
   });
 
-  describe("When the getSessions function is called and an error occurs", () => {
+  describe("When the getSessionsByMovie function is called and an error occurs", () => {
     test("Then it should throw an error", () => {
       server.resetHandlers(...errorHandlers);
 
