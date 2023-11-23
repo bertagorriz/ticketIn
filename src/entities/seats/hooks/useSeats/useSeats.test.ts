@@ -7,10 +7,9 @@ import { server } from "../../../../mocks/node";
 import { errorHandlers } from "../../../../mocks/handlers";
 
 describe("Given a useSeats functions", () => {
-  const sessionId = "1";
   describe("When it calls the getSeatsBySession function", () => {
     test("Then it should return a seats information", async () => {
-      const seatsInformation: SeatsStructure = seatsMock;
+      const seatsInformation: SeatsStructure[] = [seatsMock];
 
       const {
         result: {
@@ -18,7 +17,10 @@ describe("Given a useSeats functions", () => {
         },
       } = renderHook(() => useSeats(), { wrapper: wrapWithProviders });
 
-      const expectedSeatsInformation = await getSeatsBySession(sessionId);
+      const expectedSeatsInformation = await getSeatsBySession(
+        seatsMock.movieId,
+        seatsMock.sessionId,
+      );
 
       expect(expectedSeatsInformation).toStrictEqual(seatsInformation);
     });
@@ -34,7 +36,9 @@ describe("Given a useSeats functions", () => {
         },
       } = renderHook(() => useSeats(), { wrapper: wrapWithProviders });
 
-      expect(getSeatsBySession(sessionId)).rejects.toThrowError();
+      expect(
+        getSeatsBySession(seatsMock.movieId, seatsMock.sessionId),
+      ).rejects.toThrowError();
     });
   });
 });

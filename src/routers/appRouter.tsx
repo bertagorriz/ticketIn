@@ -28,7 +28,7 @@ const appRouter = createBrowserRouter([
         element: <NotFoundPage />,
       },
       {
-        path: path.seats,
+        path: `${path.seats}${path.detail}${path.detail}`,
         element: <SeatsPage />,
       },
     ],

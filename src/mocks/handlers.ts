@@ -25,8 +25,13 @@ export const handlers = [
     return HttpResponse.json(sessionsMock[0], { status: 200 });
   }),
 
-  http.get(`${apiUrl}${path.seats}/1`, () => {
-    return HttpResponse.json(seatsMock, { status: 200 });
+  http.get(`${apiUrl}${path.seats}`, ({ request }) => {
+    const url = new URL(request.url);
+
+    url.searchParams.set("movieId", seatsMock.movieId.toString());
+    url.searchParams.set("sessionId", seatsMock.sessionId.toString());
+
+    return HttpResponse.json([seatsMock], { status: 200 });
   }),
 ];
 
@@ -43,7 +48,12 @@ export const errorHandlers = [
     return HttpResponse.json(emptySessionsMock, { status: 401 });
   }),
 
-  http.get(`${apiUrl}${path.seats}/1`, () => {
-    return HttpResponse.json(emptySeatsMock, { status: 401 });
+  http.get(`${apiUrl}${path.seats}`, ({ request }) => {
+    const url = new URL(request.url);
+
+    url.searchParams.set("movieId", seatsMock.movieId.toString());
+    url.searchParams.set("sessionId", seatsMock.sessionId.toString());
+
+    return HttpResponse.json([emptySeatsMock], { status: 401 });
   }),
 ];
