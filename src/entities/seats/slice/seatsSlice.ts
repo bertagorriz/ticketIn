@@ -21,6 +21,16 @@ export const seatsSlice = createSlice({
       ...currentSeatsState,
       seatsData: action.payload,
     }),
+    updateSelectedSeats: (
+      currentSeatsState,
+      action: PayloadAction<string[]>,
+    ): SeatsState => ({
+      ...currentSeatsState,
+      seatsData: {
+        ...currentSeatsState.seatsData,
+        reserved: [...action.payload],
+      },
+    }),
   },
 });
 
