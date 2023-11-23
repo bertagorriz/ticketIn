@@ -8,10 +8,10 @@ const apiUrl = import.meta.env.VITE_API_URL;
 
 const useSeats = () => {
   const getSeatsBySession = useCallback(
-    async (id: string): Promise<SeatsStructure> => {
+    async (movieId: number, sessionId: number): Promise<SeatsStructure> => {
       try {
         const { data: seats } = await axios.get<SeatsStructure>(
-          `${apiUrl}${path.seats}/${id}`,
+          `${apiUrl}${path.seats}?movieId=${movieId}&sessionId=${sessionId}`,
         );
         return seats;
       } catch {
