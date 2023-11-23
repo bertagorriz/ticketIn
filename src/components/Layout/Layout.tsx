@@ -3,7 +3,7 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import ContainerStyled from "../shared/ContainerStyled";
 import Navbar from "../Navbar/Navbar";
-import "../../Toast/ToastStyled.css";
+import "../../toast/toast.css";
 
 const Layout = (): React.ReactElement => {
   return (

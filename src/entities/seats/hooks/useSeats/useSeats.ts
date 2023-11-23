@@ -2,7 +2,7 @@ import { useCallback } from "react";
 import { SeatsStructure } from "../../types";
 import path from "../../../../routers/paths/paths";
 import axios from "axios";
-import showToast from "../../../../Toast/showToast";
+import showToast from "../../../../toast/showToast";
 
 const apiUrl = import.meta.env.VITE_API_URL;
 

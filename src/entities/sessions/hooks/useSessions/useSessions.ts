@@ -1,8 +1,8 @@
 import { useCallback } from "react";
 import axios from "axios";
 import path from "../../../../routers/paths/paths";
-import showToast from "../../../../Toast/showToast";
 import { SessionsStructure } from "../../types";
+import showToast from "../../../../toast/showToast";
 
 const apiUrl = import.meta.env.VITE_API_URL;
 
