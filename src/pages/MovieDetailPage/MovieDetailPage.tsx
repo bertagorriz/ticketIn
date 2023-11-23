@@ -3,7 +3,10 @@ import Button from "../../components/Button/Button";
 import MovieDetailSkeleton from "../../components/Loaders/MovieDetailSkeleton/MovieDetailSkeleton";
 import { useAppDispatch, useAppSelector } from "../../store";
 import MovieDetailPageStyled from "./MovieDetailPageStyled";
-import { loadMovieByIdActionCreator } from "../../entities/movies/slice/moviesSlice";
+import {
+  loadMovieByIdActionCreator,
+  resetStateStoreActionCreator,
+} from "../../entities/movies/slice/moviesSlice";
 import useMovies from "../../entities/movies/hooks/useMovies";
 import { useParams } from "react-router-dom";
 import useSessions from "../../entities/sessions/hooks/useSessions/useSessions";
@@ -19,10 +22,10 @@ const MovieDetailPage = (): React.ReactElement => {
   const movie = useAppSelector((store) => store.movies.selectedMovie);
   const sessions = useAppSelector((store) => store.sessions.sessionsData.dates);
 
-  scrollTo(0, 0);
-
   useEffect(() => {
     (async () => {
+      scrollTo(0, 0);
+
       if (id) {
         const selectedMovie = await getOneMovie(id);
         const sessions = await getSessionsByMovie(id);
@@ -33,6 +36,10 @@ const MovieDetailPage = (): React.ReactElement => {
         }
       }
     })();
+
+    return () => {
+      dispatch(resetStateStoreActionCreator());
+    };
   }, [dispatch, getOneMovie, id, getSessionsByMovie]);
 
   return (

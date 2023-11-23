@@ -9,7 +9,7 @@ const MovieListSkeleton = (): React.ReactElement => {
     <MovieListPageStyled>
       <div className="box">
         <h1 className="title opacity" aria-label="skeleton">
-          <Skeleton width={170} duration={2} />
+          <Skeleton width={170} duration={2} containerClassName="flex-1" />
         </h1>
       </div>
       <MoviesListStyled>
@@ -21,12 +21,17 @@ const MovieListSkeleton = (): React.ReactElement => {
                 <MovieCardStyled className="movie">
                   <Skeleton
                     className="movie__poster"
+                    containerClassName="flex-1"
                     width={130}
                     height={190}
                     duration={2}
                   />
                   <h1 className="movie__title">
-                    <Skeleton width={130} duration={2} />
+                    <Skeleton
+                      width={130}
+                      duration={2}
+                      containerClassName="flex-1"
+                    />
                   </h1>
                 </MovieCardStyled>
               </li>
