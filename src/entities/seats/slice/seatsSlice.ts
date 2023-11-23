@@ -34,7 +34,9 @@ export const seatsSlice = createSlice({
   },
 });
 
-export const { loadSeatsBySession: loadSeatsActionCreator } =
-  seatsSlice.actions;
+export const {
+  loadSeatsBySession: loadSeatsActionCreator,
+  updateSelectedSeats: updateSelectedSeatsActionCreator,
+} = seatsSlice.actions;
 
 export const seatsReducer = seatsSlice.reducer;
