@@ -21,10 +21,22 @@ export const seatsSlice = createSlice({
       ...currentSeatsState,
       seatsData: action.payload,
     }),
+    updateSelectedSeats: (
+      currentSeatsState,
+      action: PayloadAction<string[]>,
+    ): SeatsState => ({
+      ...currentSeatsState,
+      seatsData: {
+        ...currentSeatsState.seatsData,
+        reserved: [...action.payload],
+      },
+    }),
   },
 });
 
-export const { loadSeatsBySession: loadSeatsActionCreator } =
-  seatsSlice.actions;
+export const {
+  loadSeatsBySession: loadSeatsActionCreator,
+  updateSelectedSeats: updateSelectedSeatsActionCreator,
+} = seatsSlice.actions;
 
 export const seatsReducer = seatsSlice.reducer;
