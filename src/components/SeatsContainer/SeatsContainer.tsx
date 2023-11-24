@@ -1,12 +1,13 @@
 import SeatsInfo from "../SeatsInfo/SeatsInfo";
 import SeatsList from "../SeatsList/SeatsList";
+import SeatsContainerStyled from "./SeatsContainerStyled";
 
 const SeatsContainer = (): React.ReactElement => {
   return (
-    <div>
+    <SeatsContainerStyled>
       <SeatsList />
       <SeatsInfo />
-    </div>
+    </SeatsContainerStyled>
   );
 };
 
