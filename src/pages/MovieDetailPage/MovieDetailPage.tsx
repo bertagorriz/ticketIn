@@ -8,10 +8,11 @@ import {
   resetStateStoreActionCreator,
 } from "../../entities/movies/slice/moviesSlice";
 import useMovies from "../../entities/movies/hooks/useMovies";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import useSessions from "../../entities/sessions/hooks/useSessions/useSessions";
 import { loadSessionsActionCreator } from "../../entities/sessions/slice/sessionsSlice";
 import convertDateTime from "../../convertDates/convertDates";
+import path from "../../routers/paths/paths";
 
 const MovieDetailPage = (): React.ReactElement => {
   const { isLoading } = useAppSelector((store) => store.ui);
@@ -21,6 +22,7 @@ const MovieDetailPage = (): React.ReactElement => {
   const dispatch = useAppDispatch();
   const movie = useAppSelector((store) => store.movies.selectedMovie);
   const sessions = useAppSelector((store) => store.sessions.sessionsData.dates);
+  const navigate = useNavigate();
 
   useEffect(() => {
     (async () => {
@@ -41,6 +43,10 @@ const MovieDetailPage = (): React.ReactElement => {
       dispatch(resetStateStoreActionCreator());
     };
   }, [dispatch, getOneMovie, id, getSessionsByMovie]);
+
+  const handleOnSession = (movieId: number, sessionId: number) => () => {
+    navigate(`${path.seats}/${movieId}/${sessionId}`);
+  };
 
   return (
     <MovieDetailPageStyled>
@@ -86,6 +92,7 @@ const MovieDetailPage = (): React.ReactElement => {
                       text={convertDateTime(session)[0]}
                       ariaLabel="session button"
                       title="session button"
+                      actionOnClick={handleOnSession(movie.id, position + 1)}
                     />
                   </li>
                 ))}
