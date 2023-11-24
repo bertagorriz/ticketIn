@@ -5,10 +5,12 @@ import path from "../../routers/paths/paths";
 
 interface MovieCardProps {
   movieProps: MovieStructure;
+  isLazy?: "lazy" | "eager";
 }
 
 const MovieCard = ({
   movieProps: { id, posterUrl, title },
+  isLazy,
 }: MovieCardProps): React.ReactElement => {
   return (
     <MovieCardStyled className="movie">
@@ -19,6 +21,7 @@ const MovieCard = ({
           alt={`${title} poster`}
           width="130px"
           height="190px"
+          loading={isLazy}
         />
         <h2 className="movie__title">{title}</h2>
       </Link>

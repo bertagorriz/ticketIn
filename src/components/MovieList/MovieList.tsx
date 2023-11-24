@@ -10,7 +10,10 @@ const MovieList = (): React.ReactElement => {
       <ul className="cards-list">
         {moviesData.map((movie, position) => (
           <li key={position}>
-            <MovieCard movieProps={movie} />
+            <MovieCard
+              movieProps={movie}
+              isLazy={position < 3 ? "eager" : "lazy"}
+            />
           </li>
         ))}
       </ul>
