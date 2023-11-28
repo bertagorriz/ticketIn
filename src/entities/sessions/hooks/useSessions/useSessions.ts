@@ -8,10 +8,10 @@ const apiUrl = import.meta.env.VITE_API_URL;
 
 const useSessions = () => {
   const getSessionsByMovie = useCallback(
-    async (id: string): Promise<SessionsStructure> => {
+    async (movieId: string): Promise<SessionsStructure[]> => {
       try {
-        const { data: session } = await axios.get<SessionsStructure>(
-          `${apiUrl}${path.sessions}/${id}`,
+        const { data: session } = await axios.get<SessionsStructure[]>(
+          `${apiUrl}${path.sessions}?movieId=${movieId}`,
         );
 
         return session;
