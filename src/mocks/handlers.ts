@@ -21,7 +21,10 @@ export const handlers = [
     return HttpResponse.json(moviesMock[1], { status: 200 });
   }),
 
-  http.get(`${apiUrl}${path.sessions}/1`, () => {
+  http.get(`${apiUrl}${path.sessions}`, ({ request }) => {
+    const url = new URL(request.url);
+
+    url.searchParams.set("movieId", sessionsMock[0].movieId.toString());
     return HttpResponse.json(sessionsMock[0], { status: 200 });
   }),
 
@@ -44,7 +47,10 @@ export const errorHandlers = [
     return HttpResponse.json(emptyMovieMock, { status: 401 });
   }),
 
-  http.get(`${apiUrl}${path.sessions}/1`, () => {
+  http.get(`${apiUrl}${path.sessions}`, ({ request }) => {
+    const url = new URL(request.url);
+
+    url.searchParams.set("movieId", sessionsMock[0].movieId.toString());
     return HttpResponse.json(emptySessionsMock, { status: 401 });
   }),
 
