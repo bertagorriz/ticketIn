@@ -26,13 +26,13 @@ const MovieListSkeleton = (): React.ReactElement => {
                     height={190}
                     duration={2}
                   />
-                  <h1 className="movie__title">
+                  <h2 className="movie__title">
                     <Skeleton
                       width={130}
                       duration={2}
                       containerClassName="flex-1"
                     />
-                  </h1>
+                  </h2>
                 </MovieCardStyled>
               </li>
             ))}
