@@ -83,13 +83,15 @@ const MovieDetailPage = (): React.ReactElement => {
                 {sessions.map((session, position) => (
                   <li className="movie-sessions__info" key={position}>
                     <span>
-                      {`${convertDateTime(session.dates)[1].toUpperCase()} ${
-                        convertDateTime(session.dates)[2]
+                      {`${convertDateTime(
+                        session.dates,
+                      ).weekDay.toUpperCase()} ${
+                        convertDateTime(session.dates).date
                       }`}
                     </span>
                     <Button
                       classname="movie-sessions__button"
-                      text={convertDateTime(session.dates)[0]}
+                      text={convertDateTime(session.dates).hour}
                       ariaLabel="session button"
                       title="session button"
                       actionOnClick={handleOnSession(movie.id, session.id)}

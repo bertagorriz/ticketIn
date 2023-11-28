@@ -1,13 +1,17 @@
-const convertDateTime = (dateTime: string) => {
+export interface DateTimeStructure {
+  hour: string;
+  weekDay: string;
+  date: string;
+}
+
+const convertDateTime = (dateTime: string): DateTimeStructure => {
   const date = new Date(dateTime);
 
-  return [
-    `${date.getHours()}:${
-      date.getMinutes() < 10 ? `0${date.getMinutes()}` : date.getMinutes()
-    }`,
-    `${date.toLocaleDateString("en-US", { weekday: "long" })}`,
-    `${date.getDate()}`,
-  ];
+  return {
+    hour: `${date.getHours()}:${date.getMinutes().toString().padStart(2, "0")}`,
+    weekDay: `${date.toLocaleDateString("en-US", { weekday: "long" })}`,
+    date: `${date.getDate()}`,
+  };
 };
 
 export default convertDateTime;

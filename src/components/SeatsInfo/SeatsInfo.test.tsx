@@ -1,6 +1,8 @@
 import { screen } from "@testing-library/react";
 import { renderWithProviders, wrapWithRouter } from "../../utils/testUtils";
 import SeatsInfo from "./SeatsInfo";
+import { sessionsMock } from "../../entities/sessions/mocks/sessionsMock";
+import convertDateTime from "../../convertDates/convertDates";
 
 describe("Given a SeatsInfo component", () => {
   describe("When it is rendered", () => {
@@ -9,7 +11,13 @@ describe("Given a SeatsInfo component", () => {
 
       renderWithProviders(
         wrapWithRouter(
-          <SeatsInfo movie={""} date={[]} row={""} seats={[]} price={0} />,
+          <SeatsInfo
+            movie={""}
+            row={""}
+            seats={[]}
+            price={0}
+            date={convertDateTime(sessionsMock[0].dates)}
+          />,
         ),
       );
 

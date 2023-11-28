@@ -23,11 +23,12 @@ To maintain code quality, tools like **Eslint** and **Prettier** were utilized. 
 ## Features
 
 - Browse the list of movies currently showing.
+- Detailed information for each movie, including session schedules
+- Seats page with information on available seats for reservation
 
 ## Upcoming Implementations
 
--
--
+- Ticket generation upon reservation confirmation.
 
 ## Demo
 
@@ -104,3 +105,4 @@ Currently, there is a demo hosted at the following link: https://ticketin.netlif
 - [@bertagorriz](https://github.com/bertagorriz)
 - [@jvivesramon](https://github.com/jvivesramon)
 - [@caminolosada](https://github.com/caminolosada)
+- [@DiegoCallegari](https://github.com/DiegoCallegari)
