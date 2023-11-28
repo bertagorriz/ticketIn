@@ -1,7 +1,7 @@
 import { useCallback } from "react";
 import axios from "axios";
 import { MovieStructure } from "../types";
-import path from "../../../routers/paths/paths";
+import paths from "../../../routers/paths/paths";
 import { useAppDispatch } from "../../../store";
 import {
   hideSkeletonActionCreator,
@@ -19,7 +19,7 @@ const useMovies = () => {
       dispatch(showSkeletonActionCreator());
 
       const { data: movies } = await axios.get<MovieStructure[]>(
-        `${apiUrl}${path.movies}`,
+        `${apiUrl}${paths.movies}`,
       );
 
       dispatch(hideSkeletonActionCreator());
@@ -39,7 +39,7 @@ const useMovies = () => {
         dispatch(showSkeletonActionCreator());
 
         const { data: movie } = await axios.get<MovieStructure>(
-          `${apiUrl}${path.movies}/${id}`,
+          `${apiUrl}${paths.movies}/${id}`,
         );
 
         dispatch(hideSkeletonActionCreator());

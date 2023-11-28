@@ -12,7 +12,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import useSessions from "../../entities/sessions/hooks/useSessions/useSessions";
 import { loadSessionsActionCreator } from "../../entities/sessions/slice/sessionsSlice";
 import convertDateTime from "../../convertDates/convertDates";
-import path from "../../routers/paths/paths";
+import paths from "../../routers/paths/paths";
 
 const MovieDetailPage = (): React.ReactElement => {
   const { isLoading } = useAppSelector((store) => store.ui);
@@ -21,7 +21,7 @@ const MovieDetailPage = (): React.ReactElement => {
   const { getSessionsByMovie } = useSessions();
   const dispatch = useAppDispatch();
   const movie = useAppSelector((store) => store.movies.selectedMovie);
-  const sessions = useAppSelector((store) => store.sessions.sessionsData.dates);
+  const sessions = useAppSelector((store) => store.sessions.sessionsData);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -45,7 +45,7 @@ const MovieDetailPage = (): React.ReactElement => {
   }, [dispatch, getOneMovie, id, getSessionsByMovie]);
 
   const handleOnSession = (movieId: number, sessionId: number) => () => {
-    navigate(`${path.seats}/${movieId}/${sessionId}`);
+    navigate(`${paths.seats}/${movieId}/${sessionId}`);
   };
 
   return (
@@ -83,16 +83,18 @@ const MovieDetailPage = (): React.ReactElement => {
                 {sessions.map((session, position) => (
                   <li className="movie-sessions__info" key={position}>
                     <span>
-                      {`${convertDateTime(session).weekDay.toUpperCase()} ${
-                        convertDateTime(session).date
+                      {`${convertDateTime(
+                        session.dates,
+                      ).weekDay.toUpperCase()} ${
+                        convertDateTime(session.dates).date
                       }`}
                     </span>
                     <Button
                       classname="movie-sessions__button"
-                      text={convertDateTime(session).hour}
+                      text={convertDateTime(session.dates).hour}
                       ariaLabel="session button"
                       title="session button"
-                      actionOnClick={handleOnSession(movie.id, position + 1)}
+                      actionOnClick={handleOnSession(movie.id, session.id)}
                     />
                   </li>
                 ))}

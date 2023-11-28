@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { MovieStructure } from "../../entities/movies/types";
 import MovieCardStyled from "./MovieCardStyled";
-import path from "../../routers/paths/paths";
+import paths from "../../routers/paths/paths";
 
 interface MovieCardProps {
   movieProps: MovieStructure;
@@ -14,7 +14,7 @@ const MovieCard = ({
 }: MovieCardProps): React.ReactElement => {
   return (
     <MovieCardStyled className="movie">
-      <Link to={`${path.movies}/${id}`} className="movie">
+      <Link to={`${paths.movies}/${id}`} className="movie">
         <img
           className="movie__poster"
           src={posterUrl[1]}

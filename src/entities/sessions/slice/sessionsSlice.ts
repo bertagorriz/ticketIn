@@ -2,12 +2,7 @@ import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { SessionsState, SessionsStructure } from "../types";
 
 const initialSessionsState: SessionsState = {
-  sessionsData: {
-    id: 0,
-    movieId: 0,
-    dates: [],
-    price: 0,
-  },
+  sessionsData: [],
 };
 
 export const sessionsSlice = createSlice({
@@ -16,7 +11,7 @@ export const sessionsSlice = createSlice({
   reducers: {
     loadSessionsByMovie: (
       currentSessionsState,
-      action: PayloadAction<SessionsStructure>,
+      action: PayloadAction<SessionsStructure[]>,
     ): SessionsState => ({
       ...currentSessionsState,
       sessionsData: action.payload,

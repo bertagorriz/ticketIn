@@ -1,4 +1,10 @@
-const convertDateTime = (dateTime: string) => {
+export interface DateTimeStructure {
+  hour: string;
+  weekDay: string;
+  date: string;
+}
+
+const convertDateTime = (dateTime: string): DateTimeStructure => {
   const date = new Date(dateTime);
 
   return {

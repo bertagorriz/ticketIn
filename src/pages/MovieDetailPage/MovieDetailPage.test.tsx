@@ -12,7 +12,7 @@ const renderMovieDetailPage = (boolean: boolean) => {
   renderWithProviders(wrapWithRouter(<MovieDetailPage />), {
     movies: { moviesData: moviesMock, selectedMovie: moviesMock[0] },
     ui: { isLoading: boolean },
-    sessions: { sessionsData: sessionsMock[0] },
+    sessions: { sessionsData: sessionsMock },
   });
 };
 

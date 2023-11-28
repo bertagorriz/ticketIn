@@ -1,5 +1,5 @@
 import { NavLink } from "react-router-dom";
-import path from "../../routers/paths/paths";
+import paths from "../../routers/paths/paths";
 import NotFoundPageStyled from "./NotFoundPageStyled";
 
 const NotFoundPage = (): React.ReactElement => {
@@ -11,7 +11,7 @@ const NotFoundPage = (): React.ReactElement => {
       </div>
       <NavLink
         className="home"
-        to={path.movies}
+        to={paths.movies}
         title="back home"
         aria-label="back home"
       >

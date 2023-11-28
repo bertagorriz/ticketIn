@@ -4,6 +4,8 @@ interface PathStructure {
   detail: string;
   sessions: string;
   seats: string;
+  movieId: string;
+  sessionId: string;
   tickets: string;
   errorPage: string;
 }

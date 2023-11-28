@@ -1,5 +1,5 @@
 import { Navigate, createBrowserRouter } from "react-router-dom";
-import path from "./paths/paths";
+import paths from "./paths/paths";
 import App from "../components/App/App";
 import MovieListPage from "../pages/MovieListPage/MovieListPage";
 import MovieDetailPage from "../pages/MovieDetailPage/MovieDetailPage";
@@ -8,27 +8,27 @@ import SeatsPage from "../pages/SeatsPage/SeatsPage";
 
 const appRouter = createBrowserRouter([
   {
-    path: path.app,
+    path: paths.app,
     element: <App />,
     children: [
       {
         index: true,
-        element: <Navigate to={path.movies} replace />,
+        element: <Navigate to={paths.movies} replace />,
       },
       {
-        path: path.movies,
+        path: paths.movies,
         element: <MovieListPage />,
       },
       {
-        path: `${path.movies}${path.detail}`,
+        path: `${paths.movies}${paths.detail}`,
         element: <MovieDetailPage />,
       },
       {
-        path: path.errorPage,
+        path: paths.errorPage,
         element: <NotFoundPage />,
       },
       {
-        path: `${path.seats}${path.detail}${path.detail}`,
+        path: `${paths.seats}${paths.movieId}${paths.sessionId}`,
         element: <SeatsPage />,
       },
     ],
