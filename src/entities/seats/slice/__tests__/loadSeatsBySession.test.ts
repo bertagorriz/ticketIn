@@ -1,6 +1,6 @@
 import { seatsMock } from "../../mocks/seatsMock";
 import { SeatsState, SeatsStructure } from "../../types";
-import { loadSeatsActionCreator, seatsReducer } from "../seatsSlice";
+import { loadSeatsBySessionActionCreator, seatsReducer } from "../seatsSlice";
 
 describe("Given a loadSeatsBySession reducer", () => {
   describe("When it receives an empty sessions state and the action to load the seats session data", () => {
@@ -16,7 +16,7 @@ describe("Given a loadSeatsBySession reducer", () => {
         seatsData: currentEmptyState,
       };
 
-      const loadReservedSeats = loadSeatsActionCreator(seatsMock);
+      const loadReservedSeats = loadSeatsBySessionActionCreator(seatsMock);
 
       const expectedNewSeatsState: SeatsState = {
         ...currentSeatsState,

@@ -18,8 +18,8 @@ describe("Given a useSeats functions", () => {
       } = renderHook(() => useSeats(), { wrapper: wrapWithProviders });
 
       const expectedSeatsInformation = await getSeatsBySession(
-        seatsMock.movieId,
-        seatsMock.sessionId,
+        seatsMock.movieId.toString(),
+        seatsMock.sessionId.toString(),
       );
 
       expect(expectedSeatsInformation).toStrictEqual(seatsInformation);
@@ -37,7 +37,10 @@ describe("Given a useSeats functions", () => {
       } = renderHook(() => useSeats(), { wrapper: wrapWithProviders });
 
       expect(
-        getSeatsBySession(seatsMock.movieId, seatsMock.sessionId),
+        getSeatsBySession(
+          seatsMock.movieId.toString(),
+          seatsMock.sessionId.toString(),
+        ),
       ).rejects.toThrowError();
     });
   });
