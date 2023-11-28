@@ -7,7 +7,11 @@ describe("Given a SeatsInfo component", () => {
     test("Then it should show a movie icon", () => {
       const movieIcon = "movie";
 
-      renderWithProviders(wrapWithRouter(<SeatsInfo />));
+      renderWithProviders(
+        wrapWithRouter(
+          <SeatsInfo movie={""} date={[]} row={""} seats={[]} price={0} />,
+        ),
+      );
 
       const expectedMovieIcon = screen.getByRole("img", { name: movieIcon });
 
