@@ -1,6 +1,6 @@
 import { useCallback } from "react";
 import { SeatsStructure } from "../../types";
-import path from "../../../../routers/paths/paths";
+import paths from "../../../../routers/paths/paths";
 import axios from "axios";
 import showToast from "../../../../toast/showToast";
 import {
@@ -20,7 +20,7 @@ const useSeats = () => {
         dispatch(showSkeletonActionCreator());
 
         const { data: seats } = await axios.get<SeatsStructure>(
-          `${apiUrl}${path.seats}?movieId=${movieId}&sessionId=${sessionId}`,
+          `${apiUrl}${paths.seats}?movieId=${movieId}&sessionId=${sessionId}`,
         );
         dispatch(hideSkeletonActionCreator());
 
@@ -44,7 +44,7 @@ const useSeats = () => {
       const {
         data: { updatedSeat },
       } = await axios.put<{ updatedSeat: SeatsStructure }>(
-        `${apiUrl}${path.seats}/${id}`,
+        `${apiUrl}${paths.seats}/${id}`,
         dataSeat,
       );
 

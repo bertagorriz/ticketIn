@@ -1,6 +1,6 @@
 import { useCallback } from "react";
 import axios from "axios";
-import path from "../../../../routers/paths/paths";
+import paths from "../../../../routers/paths/paths";
 import { SessionsStructure } from "../../types";
 import showToast from "../../../../toast/showToast";
 
@@ -11,7 +11,7 @@ const useSessions = () => {
     async (movieId: string): Promise<SessionsStructure[]> => {
       try {
         const { data: session } = await axios.get<SessionsStructure[]>(
-          `${apiUrl}${path.sessions}?movieId=${movieId}`,
+          `${apiUrl}${paths.sessions}?movieId=${movieId}`,
         );
 
         return session;

@@ -12,7 +12,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import useSessions from "../../entities/sessions/hooks/useSessions/useSessions";
 import { loadSessionsActionCreator } from "../../entities/sessions/slice/sessionsSlice";
 import convertDateTime from "../../convertDates/convertDates";
-import path from "../../routers/paths/paths";
+import paths from "../../routers/paths/paths";
 
 const MovieDetailPage = (): React.ReactElement => {
   const { isLoading } = useAppSelector((store) => store.ui);
@@ -45,7 +45,7 @@ const MovieDetailPage = (): React.ReactElement => {
   }, [dispatch, getOneMovie, id, getSessionsByMovie]);
 
   const handleOnSession = (movieId: number, sessionId: number) => () => {
-    navigate(`${path.seats}/${movieId}/${sessionId}`);
+    navigate(`${paths.seats}/${movieId}/${sessionId}`);
   };
 
   return (

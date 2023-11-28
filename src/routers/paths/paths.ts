@@ -1,6 +1,6 @@
 import PathStructure from "./types";
 
-const path: PathStructure = {
+const paths: PathStructure = {
   app: "/",
   movies: "/movies",
   detail: "/:id",
@@ -12,4 +12,4 @@ const path: PathStructure = {
   errorPage: "*",
 };
 
-export default path;
+export default paths;

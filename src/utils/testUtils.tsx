@@ -7,7 +7,7 @@ import theme from "../styles/theme/theme";
 import GlobalStyle from "../styles/GlobalStyle/GlobalStyle";
 import { Provider } from "react-redux";
 import { createMemoryRouter, RouterProvider } from "react-router-dom";
-import path from "../routers/paths/paths";
+import paths from "../routers/paths/paths";
 
 export const renderWithProviders = (
   ui: React.ReactElement,
@@ -30,19 +30,19 @@ export const renderWithProviders = (
 export const wrapWithRouter = (ui: React.ReactElement) => {
   const routes = [
     {
-      path: path.app,
+      path: paths.app,
       element: ui,
     },
     {
-      path: path.movies,
+      path: paths.movies,
       element: ui,
     },
     {
-      path: path.sessions,
+      path: paths.sessions,
       element: ui,
     },
     {
-      path: `${path.seats}${path.movieId}${path.sessionId}`,
+      path: `${paths.seats}${paths.movieId}${paths.sessionId}`,
       element: ui,
     },
   ];

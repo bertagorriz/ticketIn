@@ -1,7 +1,7 @@
 import { screen } from "@testing-library/react";
 import { renderWithProviders, wrapWithRouter } from "../../utils/testUtils";
 import Navbar from "./Navbar";
-import path from "../../routers/paths/paths";
+import paths from "../../routers/paths/paths";
 import { RouterProvider, createMemoryRouter } from "react-router-dom";
 import { moviesMock } from "../../entities/movies/mocks/moviesMock";
 
@@ -24,22 +24,22 @@ describe("Given a Navbar component", () => {
 
       const routes = [
         {
-          path: path.app,
+          path: paths.app,
           element: <Navbar />,
         },
         {
-          path: path.movies,
+          path: paths.movies,
           element: <Navbar />,
         },
         {
-          path: `${path.movies}/${selectedMovie.id}`,
+          path: `${paths.movies}/${selectedMovie.id}`,
           element: <Navbar />,
         },
       ];
 
       const router = createMemoryRouter(routes);
 
-      router.state.location.pathname = `${path.movies}/${selectedMovie.id}`;
+      router.state.location.pathname = `${paths.movies}/${selectedMovie.id}`;
 
       const textImage = "back to page button";
 
