@@ -41,6 +41,10 @@ export const wrapWithRouter = (ui: React.ReactElement) => {
       path: path.sessions,
       element: ui,
     },
+    {
+      path: `${path.seats}${path.movieId}${path.sessionId}`,
+      element: ui,
+    },
   ];
 
   const router = createMemoryRouter(routes);

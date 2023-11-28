@@ -6,6 +6,8 @@ const path: PathStructure = {
   detail: "/:id",
   sessions: "/sessions",
   seats: "/seats",
+  movieId: "/:movieId",
+  sessionId: "/:sessionId",
   tickets: "/tickets",
   errorPage: "*",
 };
