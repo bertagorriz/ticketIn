@@ -9,3 +9,7 @@ export const LazyMovieDetailPage = lazy(
 );
 
 export const LazySeatsPage = lazy(() => import("../pages/SeatsPage/SeatsPage"));
+
+export const LazyNotFoundPage = lazy(
+  () => import("../pages/NotFoundPage/NotFoundPage"),
+);

@@ -2,10 +2,10 @@ import { Navigate, createBrowserRouter } from "react-router-dom";
 import { Suspense } from "react";
 import paths from "./paths/paths";
 import App from "../components/App/App";
-import NotFoundPage from "../pages/NotFoundPage/NotFoundPage";
 import {
   LazyMovieDetailPage,
   LazyMovieLisPage,
+  LazyNotFoundPage,
   LazySeatsPage,
 } from "./lazyComponentes";
 
@@ -36,7 +36,11 @@ const appRouter = createBrowserRouter([
       },
       {
         path: paths.errorPage,
-        element: <NotFoundPage />,
+        element: (
+          <Suspense>
+            <LazyNotFoundPage />
+          </Suspense>
+        ),
       },
       {
         path: `${paths.seats}${paths.movieId}${paths.sessionId}`,
