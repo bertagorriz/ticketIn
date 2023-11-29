@@ -1,18 +1,13 @@
 import { useCallback } from "react";
-import axios from "axios";
-import paths from "../../../../routers/paths/paths";
 import { SessionsStructure } from "../../types";
 import showToast from "../../../../toast/showToast";
+import SessionsClient from "../../services/types";
 
-const apiUrl = import.meta.env.VITE_API_URL;
-
-const useSessions = () => {
+const useSessions = (sessionsClient: SessionsClient) => {
   const getSessionsByMovie = useCallback(
     async (movieId: string): Promise<SessionsStructure[]> => {
       try {
-        const { data: session } = await axios.get<SessionsStructure[]>(
-          `${apiUrl}${paths.sessions}?movieId=${movieId}`,
-        );
+        const session = await sessionsClient.getSessionsByMovie(movieId);
 
         return session;
       } catch {
@@ -21,7 +16,7 @@ const useSessions = () => {
         throw error;
       }
     },
-    [],
+    [sessionsClient],
   );
   return { getSessionsByMovie };
 };

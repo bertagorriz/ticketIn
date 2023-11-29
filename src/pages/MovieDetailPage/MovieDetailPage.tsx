@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useMemo } from "react";
 import Button from "../../components/Button/Button";
 import MovieDetailSkeleton from "../../components/Loaders/MovieDetailSkeleton/MovieDetailSkeleton";
 import { useAppDispatch, useAppSelector } from "../../store";
@@ -13,12 +13,16 @@ import useSessions from "../../entities/sessions/hooks/useSessions/useSessions";
 import { loadSessionsActionCreator } from "../../entities/sessions/slice/sessionsSlice";
 import convertDateTime from "../../convertDates/convertDates";
 import paths from "../../routers/paths/paths";
+import AxiosSessionsClient from "../../entities/sessions/services/AxiosSessionsClient";
+import apiUrl from "../../utils/apiUrl/apiUrl";
 
 const MovieDetailPage = (): React.ReactElement => {
+  const sessionsClient = useMemo(() => new AxiosSessionsClient(apiUrl), []);
+
   const { isLoading } = useAppSelector((store) => store.ui);
   const { id } = useParams();
   const { getOneMovie } = useMovies();
-  const { getSessionsByMovie } = useSessions();
+  const { getSessionsByMovie } = useSessions(sessionsClient);
   const dispatch = useAppDispatch();
   const movie = useAppSelector((store) => store.movies.selectedMovie);
   const sessions = useAppSelector((store) => store.sessions.sessionsData);
