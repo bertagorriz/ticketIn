@@ -3,8 +3,11 @@ import { Suspense } from "react";
 import paths from "./paths/paths";
 import App from "../components/App/App";
 import NotFoundPage from "../pages/NotFoundPage/NotFoundPage";
-import SeatsPage from "../pages/SeatsPage/SeatsPage";
-import { LazyMovieDetailPage, LazyMovieLisPage } from "./lazyComponentes";
+import {
+  LazyMovieDetailPage,
+  LazyMovieLisPage,
+  LazySeatsPage,
+} from "./lazyComponentes";
 
 const appRouter = createBrowserRouter([
   {
@@ -37,7 +40,11 @@ const appRouter = createBrowserRouter([
       },
       {
         path: `${paths.seats}${paths.movieId}${paths.sessionId}`,
-        element: <SeatsPage />,
+        element: (
+          <Suspense>
+            <LazySeatsPage />
+          </Suspense>
+        ),
       },
     ],
   },

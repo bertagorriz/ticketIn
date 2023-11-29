@@ -7,3 +7,5 @@ export const LazyMovieLisPage = lazy(
 export const LazyMovieDetailPage = lazy(
   () => import("../pages/MovieDetailPage/MovieDetailPage"),
 );
+
+export const LazySeatsPage = lazy(() => import("../pages/SeatsPage/SeatsPage"));
