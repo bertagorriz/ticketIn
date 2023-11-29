@@ -8,19 +8,16 @@ import {
   showSkeletonActionCreator,
 } from "../../ui/uiSlice";
 import showToast from "../../../toast/showToast";
+import MoviesClient from "../services/types";
 
-const apiUrl = import.meta.env.VITE_API_URL;
-
-const useMovies = () => {
+const useMovies = (moviesClient: MoviesClient) => {
   const dispatch = useAppDispatch();
 
   const getMovies = useCallback(async (): Promise<MovieStructure[]> => {
     try {
       dispatch(showSkeletonActionCreator());
 
-      const { data: movies } = await axios.get<MovieStructure[]>(
-        `${apiUrl}${paths.movies}`,
-      );
+      const movies = await moviesClient.getMovies();
 
       dispatch(hideSkeletonActionCreator());
       return movies;
@@ -31,7 +28,7 @@ const useMovies = () => {
       showToast(error, "error");
       throw error;
     }
-  }, [dispatch]);
+  }, [dispatch, moviesClient]);
 
   const getOneMovie = useCallback(
     async (id: string): Promise<MovieStructure> => {
