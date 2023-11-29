@@ -12,6 +12,13 @@ class AxiosMoviesClient implements MoviesClient {
     );
     return movies;
   }
+
+  async getOneMovie(id: string): Promise<MovieStructure> {
+    const { data: movie } = await axios.get<MovieStructure>(
+      `${this.apiUrl}${paths.movies}/${id}`,
+    );
+    return movie;
+  }
 }
 
 export default AxiosMoviesClient;
