@@ -13,7 +13,7 @@ const NavbarStyled = styled.nav`
 
   .navbar-container__home-button {
     width: 146px;
-    height: 28.05px;
+    height: 28px;
   }
 
   .navbar-container__backtopage-button {

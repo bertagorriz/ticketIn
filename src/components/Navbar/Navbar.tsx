@@ -8,7 +8,7 @@ const Navbar = (): React.ReactElement => {
   const { pathname } = useLocation();
   const { selectedMovie } = useAppSelector((store) => store.movies);
 
-  const isPathname = useMemo(() => {
+  const hasBackOption = useMemo(() => {
     return (
       pathname === paths.tickets ||
       pathname === paths.seats ||
@@ -26,7 +26,7 @@ const Navbar = (): React.ReactElement => {
           height="28.05"
         />
       </Link>
-      {isPathname && (
+      {hasBackOption && (
         <Link to={paths.movies} className="navbar-container__backtopage-button">
           <img
             src="/images/navbar/back-to-page-icon.svg"
