@@ -5,17 +5,22 @@ import useMovies from "./useMovies";
 import { wrapWithProviders } from "../../../utils/testUtils";
 import { server } from "../../../mocks/node";
 import { errorHandlers } from "../../../mocks/handlers";
+import AxiosMoviesClient from "../services/AxiosMoviesClient";
+import apiUrl from "../../../utils/apiUrl/apiUrl";
 
 describe("Given a getMovies function", () => {
   describe("When it is invoked", () => {
     test("Then it should return a list of two movies", async () => {
       const moviesList: MovieStructure[] = moviesMock;
+      const moviesClient = new AxiosMoviesClient(apiUrl);
 
       const {
         result: {
           current: { getMovies },
         },
-      } = renderHook(() => useMovies(), { wrapper: wrapWithProviders });
+      } = renderHook(() => useMovies(moviesClient), {
+        wrapper: wrapWithProviders,
+      });
 
       const expectedMovieList = await getMovies();
 
@@ -27,12 +32,15 @@ describe("Given a getMovies function", () => {
     test("Then it should throw an 'Sorry, movies couldn't be loaded' error", () => {
       server.resetHandlers(...errorHandlers);
       const expectedError = "Sorry, movies couldn't be loaded";
+      const moviesClient = new AxiosMoviesClient(apiUrl);
 
       const {
         result: {
           current: { getMovies },
         },
-      } = renderHook(() => useMovies(), { wrapper: wrapWithProviders });
+      } = renderHook(() => useMovies(moviesClient), {
+        wrapper: wrapWithProviders,
+      });
 
       const movieList = getMovies();
 

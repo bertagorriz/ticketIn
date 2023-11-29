@@ -1,13 +1,16 @@
 import { useAppDispatch, useAppSelector } from "../../store";
 import MovieList from "../../components/MovieList/MovieList";
 import { loadMoviesActionCreator } from "../../entities/movies/slice/moviesSlice";
-import { useEffect } from "react";
+import { useEffect, useMemo } from "react";
 import MovieListPageStyled from "./MovieListPageStyled";
 import useMovies from "../../entities/movies/hooks/useMovies";
 import MovieListSkeleton from "../../components/Loaders/MovieListLoading/MovieListSkeleton";
+import AxiosMoviesClient from "../../entities/movies/services/AxiosMoviesClient";
+import apiUrl from "../../utils/apiUrl/apiUrl";
 
 const MovieListPage = (): React.ReactElement => {
-  const { getMovies } = useMovies();
+  const moviesClient = useMemo(() => new AxiosMoviesClient(apiUrl), []);
+  const { getMovies } = useMovies(moviesClient);
   const dispatch = useAppDispatch();
   const { isLoading } = useAppSelector((store) => store.ui);
 
