@@ -55,12 +55,15 @@ describe("Given a getOneMovie function", () => {
   describe("When it is invoked", () => {
     test("Then it should return one movie", async () => {
       const moviesList: MovieStructure = moviesMock[1];
+      const moviesClient = new AxiosMoviesClient(apiUrl);
 
       const {
         result: {
           current: { getOneMovie },
         },
-      } = renderHook(() => useMovies(), { wrapper: wrapWithProviders });
+      } = renderHook(() => useMovies(moviesClient), {
+        wrapper: wrapWithProviders,
+      });
 
       const expectedMovieList = await getOneMovie(movieId);
 
@@ -71,6 +74,7 @@ describe("Given a getOneMovie function", () => {
   describe("When it is invoked and there is an error", () => {
     test("Then it should throw an 'Sorry, movie couldn't be loaded' error", () => {
       server.resetHandlers(...errorHandlers);
+      const moviesClient = new AxiosMoviesClient(apiUrl);
 
       const expectedError = "Sorry, movie couldn't be loaded";
 
@@ -78,7 +82,9 @@ describe("Given a getOneMovie function", () => {
         result: {
           current: { getOneMovie },
         },
-      } = renderHook(() => useMovies(), { wrapper: wrapWithProviders });
+      } = renderHook(() => useMovies(moviesClient), {
+        wrapper: wrapWithProviders,
+      });
 
       const movieList = getOneMovie(movieId);
 

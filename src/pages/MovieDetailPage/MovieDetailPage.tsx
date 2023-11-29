@@ -15,13 +15,15 @@ import convertDateTime from "../../convertDates/convertDates";
 import paths from "../../routers/paths/paths";
 import AxiosSessionsClient from "../../entities/sessions/services/AxiosSessionsClient";
 import apiUrl from "../../utils/apiUrl/apiUrl";
+import AxiosMoviesClient from "../../entities/movies/services/AxiosMoviesClient";
 
 const MovieDetailPage = (): React.ReactElement => {
   const sessionsClient = useMemo(() => new AxiosSessionsClient(apiUrl), []);
+  const moviesClient = useMemo(() => new AxiosMoviesClient(apiUrl), []);
 
   const { isLoading } = useAppSelector((store) => store.ui);
   const { id } = useParams();
-  const { getOneMovie } = useMovies();
+  const { getOneMovie } = useMovies(moviesClient);
   const { getSessionsByMovie } = useSessions(sessionsClient);
   const dispatch = useAppDispatch();
   const movie = useAppSelector((store) => store.movies.selectedMovie);
