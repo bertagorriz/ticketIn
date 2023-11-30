@@ -44,4 +44,39 @@ describe("Given a useSeats functions", () => {
       ).rejects.toThrowError();
     });
   });
+
+  describe("When the updateSeat function is called with an id and the updated seats information", () => {
+    test("Then it should return the updated seats information", async () => {
+      const updatedSeats: SeatsStructure = seatsMock;
+
+      const {
+        result: {
+          current: { updateSeat },
+        },
+      } = renderHook(() => useSeats(), { wrapper: wrapWithProviders });
+
+      const expectedSeatsInformation = await updateSeat(
+        seatsMock.movieId.toString(),
+        seatsMock,
+      );
+
+      expect(expectedSeatsInformation).toStrictEqual(updatedSeats);
+    });
+  });
+
+  describe("When the updateSeat function is called with an id and the updated seats information and an error occurs", () => {
+    test("Then it should throw an error", () => {
+      server.resetHandlers(...errorHandlers);
+
+      const {
+        result: {
+          current: { updateSeat },
+        },
+      } = renderHook(() => useSeats(), { wrapper: wrapWithProviders });
+
+      expect(
+        updateSeat(seatsMock.movieId.toString(), seatsMock),
+      ).rejects.toThrowError();
+    });
+  });
 });
