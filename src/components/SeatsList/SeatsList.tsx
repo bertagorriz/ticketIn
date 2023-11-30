@@ -1,10 +1,20 @@
-import { useState } from "react";
+import { Dispatch, SetStateAction } from "react";
 import Button from "../Button/Button";
 import SeatsListStyled from "./SeatsListStyled";
 
-const SeatsList = (): React.ReactElement => {
-  const [reservedSeats, setReservedSeats] = useState([] as string[]);
+interface GetTotalPriceStructure {
+  sumTotalPrice: () => void;
+  restTotalPrice: () => void;
+  reservedSeats: string[];
+  setReservedSeats: Dispatch<SetStateAction<string[]>>;
+}
 
+const SeatsList = ({
+  restTotalPrice,
+  sumTotalPrice,
+  reservedSeats,
+  setReservedSeats,
+}: GetTotalPriceStructure): React.ReactElement => {
   const setSeatsLocation = (
     rowPosition: number,
     seatPosition: number,
@@ -23,10 +33,12 @@ const SeatsList = (): React.ReactElement => {
       setReservedSeats(
         reservedSeats.filter((seats) => seats !== seatsLocation),
       );
+      restTotalPrice();
       return;
     }
 
     setReservedSeats([...reservedSeats, seatsLocation]);
+    sumTotalPrice();
     return;
   };
 

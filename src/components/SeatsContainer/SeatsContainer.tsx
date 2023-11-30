@@ -15,6 +15,26 @@ const SeatsContainer = (): React.ReactElement => {
   const [selectedSession, setSelectedSession] = useState<
     SessionsStructure | undefined | null
   >(null);
+  const [currentPrice, setCurrentPrice] = useState<number>(0);
+  const [reservedSeats, setReservedSeats] = useState([] as string[]);
+
+  const getTotalPrice = () => {
+    const sumTotalPrice = () => setCurrentPrice(currentPrice + 9);
+    const restTotalPrice = () => setCurrentPrice(currentPrice - 9);
+
+    return { sumTotalPrice, restTotalPrice };
+  };
+
+  const getReservedInformationSeats = (seats: string[]) => {
+    const getSeatsInformation = seats.map((seat) => {
+      if (seats.length === 1 || seat === seats[seats.length - 1]) {
+        return `r:${seat[1]} s:${seat[3]}`;
+      }
+      return `r:${seat[1]} s:${seat[3]} | `;
+    });
+
+    return getSeatsInformation;
+  };
 
   const doesSelectedSessionExist = (
     selectedSession: SessionsStructure | undefined | null,
@@ -40,13 +60,17 @@ const SeatsContainer = (): React.ReactElement => {
     <SeatsContainerStyled>
       {selectedSession && (
         <>
-          <SeatsList />
+          <SeatsList
+            restTotalPrice={getTotalPrice().restTotalPrice}
+            sumTotalPrice={getTotalPrice().sumTotalPrice}
+            reservedSeats={reservedSeats}
+            setReservedSeats={setReservedSeats}
+          />
           <SeatsInfo
             movie={selectedMovie.title}
             date={convertDateTime(selectedSession.dates)}
-            row="1"
-            seats={["2", ", ", "3"]}
-            price={9}
+            seats={getReservedInformationSeats(reservedSeats)}
+            price={currentPrice}
           />{" "}
         </>
       )}
