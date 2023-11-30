@@ -9,13 +9,18 @@ import useMovies from "../../entities/movies/hooks/useMovies";
 import { loadMovieByIdActionCreator } from "../../entities/movies/slice/moviesSlice";
 import AxiosMoviesClient from "../../entities/movies/services/AxiosMoviesClient";
 import apiUrl from "../../utils/apiUrl/apiUrl";
+import AxiosSessionsClient from "../../entities/sessions/services/AxiosSessionsClient";
+import useSessions from "../../entities/sessions/hooks/useSessions/useSessions";
+import { loadSessionsActionCreator } from "../../entities/sessions/slice/sessionsSlice";
 
 const SeatsPage = (): React.ReactElement => {
   const moviesClient = useMemo(() => new AxiosMoviesClient(apiUrl), []);
+  const sessionsClient = useMemo(() => new AxiosSessionsClient(apiUrl), []);
 
   const { movieId, sessionId } = useParams();
   const { getSeatsBySession } = useSeats();
   const { getOneMovie } = useMovies(moviesClient);
+  const { getSessionsByMovie } = useSessions(sessionsClient);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
@@ -23,14 +28,26 @@ const SeatsPage = (): React.ReactElement => {
       scrollTo(0, 0);
 
       if (movieId && sessionId) {
-        const selectedSession = await getSeatsBySession(movieId, sessionId);
+        const selectedSeatsSession = await getSeatsBySession(
+          movieId,
+          sessionId,
+        );
+        const selectedSessions = await getSessionsByMovie(movieId);
         const selectedMovie = await getOneMovie(movieId);
 
-        dispatch(loadSeatsBySessionActionCreator(selectedSession));
+        dispatch(loadSeatsBySessionActionCreator(selectedSeatsSession));
+        dispatch(loadSessionsActionCreator(selectedSessions));
         dispatch(loadMovieByIdActionCreator(selectedMovie));
       }
     })();
-  }, [dispatch, getSeatsBySession, getOneMovie, movieId, sessionId]);
+  }, [
+    dispatch,
+    getSeatsBySession,
+    getOneMovie,
+    movieId,
+    sessionId,
+    getSessionsByMovie,
+  ]);
 
   return (
     <SeatsPageStyled>

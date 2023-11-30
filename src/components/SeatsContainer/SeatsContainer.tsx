@@ -15,6 +15,7 @@ const SeatsContainer = (): React.ReactElement => {
   const [selectedSession, setSelectedSession] = useState<
     SessionsStructure | undefined | null
   >(null);
+
   const doesSelectedSessionExist = (
     selectedSession: SessionsStructure | undefined | null,
   ) => typeof selectedSession === "undefined";
@@ -31,8 +32,7 @@ const SeatsContainer = (): React.ReactElement => {
     );
 
     if (doesSelectedSessionExist(selectedSession)) {
-      const errorMessage = "Can't load selected session!";
-      showToast(errorMessage, "error");
+      return;
     }
   }, [selectedSession, sessionId, sessionsData]);
 
