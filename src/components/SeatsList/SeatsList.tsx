@@ -1,6 +1,35 @@
+import { useState } from "react";
+import Button from "../Button/Button";
 import SeatsListStyled from "./SeatsListStyled";
 
 const SeatsList = (): React.ReactElement => {
+  const [reservedSeats, setReservedSeats] = useState([] as string[]);
+
+  const setSeatsLocation = (
+    rowPosition: number,
+    seatPosition: number,
+  ): string => {
+    return `r${rowPosition + 1}s${seatPosition + 1}`;
+  };
+
+  const isReservedSeat = (seatsLocation: string) => {
+    return reservedSeats.includes(seatsLocation);
+  };
+
+  const handleOnClick = (rowPosition: number, seatPosition: number) => {
+    const seatsLocation = setSeatsLocation(rowPosition, seatPosition);
+
+    if (isReservedSeat(seatsLocation)) {
+      setReservedSeats(
+        reservedSeats.filter((seats) => seats !== seatsLocation),
+      );
+      return;
+    }
+
+    setReservedSeats([...reservedSeats, seatsLocation]);
+    return;
+  };
+
   return (
     <SeatsListStyled className="seats">
       <img
@@ -10,13 +39,35 @@ const SeatsList = (): React.ReactElement => {
       />
       {Array(4)
         .fill("row")
-        .map((_row, position) => (
-          <ul className="seats__row" key={position}>
+        .map((_row, rowPosition) => (
+          <ul className="seats__row" key={rowPosition}>
             {Array(5)
               .fill("seat")
-              .map((_seat, position) => (
-                <li key={position}>
-                  <img src="/images/seats/available.svg" alt="seat" />
+              .map((_seat, seatPosition) => (
+                <li key={seatPosition}>
+                  <Button
+                    classname="seat"
+                    actionOnClick={() =>
+                      handleOnClick(rowPosition, seatPosition)
+                    }
+                  >
+                    <img
+                      src={`/images/seats/${
+                        isReservedSeat(
+                          setSeatsLocation(rowPosition, seatPosition),
+                        )
+                          ? `selected`
+                          : `available`
+                      }.svg`}
+                      alt={`${
+                        isReservedSeat(
+                          setSeatsLocation(rowPosition, seatPosition),
+                        )
+                          ? `selected`
+                          : `available`
+                      } seat`}
+                    />
+                  </Button>
                 </li>
               ))}
           </ul>

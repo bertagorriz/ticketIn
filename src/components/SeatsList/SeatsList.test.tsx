@@ -11,7 +11,9 @@ describe("Given a SeatsList component", () => {
     test("Then it should show a list of four rows each with five seats", () => {
       const totalSeats = 20;
 
-      const expectedSeats = screen.getAllByRole("img", { name: "seat" });
+      const expectedSeats = screen.getAllByRole("img", {
+        name: "available seat",
+      });
 
       expect(expectedSeats).toHaveLength(totalSeats);
     });
