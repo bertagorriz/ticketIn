@@ -36,6 +36,10 @@ export const handlers = [
 
     return HttpResponse.json([seatsMock], { status: 200 });
   }),
+
+  http.put(`${apiUrl}${paths.seats}/1`, () => {
+    return HttpResponse.json(seatsMock, { status: 200 });
+  }),
 ];
 
 export const errorHandlers = [
@@ -61,5 +65,9 @@ export const errorHandlers = [
     url.searchParams.set("sessionId", seatsMock.sessionId.toString());
 
     return HttpResponse.json([emptySeatsMock], { status: 401 });
+  }),
+
+  http.put(`${apiUrl}${paths.seats}/1`, () => {
+    return HttpResponse.json({}, { status: 401 });
   }),
 ];

@@ -41,9 +41,7 @@ const useSeats = () => {
     dataSeat: SeatsStructure,
   ): Promise<SeatsStructure> => {
     try {
-      const {
-        data: { updatedSeat },
-      } = await axios.put<{ updatedSeat: SeatsStructure }>(
+      const { data: updatedSeat } = await axios.put<SeatsStructure>(
         `${apiUrl}${paths.seats}/${id}`,
         dataSeat,
       );
