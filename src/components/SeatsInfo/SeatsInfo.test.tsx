@@ -13,7 +13,6 @@ describe("Given a SeatsInfo component", () => {
         wrapWithRouter(
           <SeatsInfo
             movie={""}
-            row={""}
             seats={[]}
             price={0}
             date={convertDateTime(sessionsMock[0].dates)}

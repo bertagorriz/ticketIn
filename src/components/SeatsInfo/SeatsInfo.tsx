@@ -4,7 +4,6 @@ import SeatsInfoStyled from "./SeatsInfoStyled";
 interface SeatsInfoProps {
   movie: string;
   date: DateTimeStructure;
-  row: string;
   seats: string[];
   price: number;
 }
@@ -12,7 +11,6 @@ interface SeatsInfoProps {
 const SeatsInfo = ({
   movie,
   date,
-  row,
   seats,
   price,
 }: SeatsInfoProps): React.ReactElement => {
@@ -35,10 +33,6 @@ const SeatsInfo = ({
       <article className="info-container__row">
         <div className="info-container__text">
           <img src="/images/seats/ticket.svg" alt="calendar" />
-          <span>Row: {row}</span>
-        </div>
-        <div className="info-container__text">
-          <img src="/images/seats/available-circle.svg" alt="circle" />
           <span>Seats: {seats}</span>
         </div>
       </article>

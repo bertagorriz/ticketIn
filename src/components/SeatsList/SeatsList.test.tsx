@@ -3,7 +3,16 @@ import { renderWithProviders, wrapWithRouter } from "../../utils/testUtils";
 import SeatsList from "./SeatsList";
 
 beforeEach(() => {
-  renderWithProviders(wrapWithRouter(<SeatsList />));
+  renderWithProviders(
+    wrapWithRouter(
+      <SeatsList
+        reservedSeats={[""]}
+        restTotalPrice={() => ""}
+        setReservedSeats={() => ""}
+        sumTotalPrice={() => ""}
+      />,
+    ),
+  );
 });
 
 describe("Given a SeatsList component", () => {
