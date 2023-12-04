@@ -7,6 +7,7 @@ interface GetTotalPriceStructure {
   restTotalPrice: () => void;
   reservedSeats: string[];
   setReservedSeats: Dispatch<SetStateAction<string[]>>;
+  unavailableSeats: string[];
 }
 
 const SeatsList = ({
@@ -14,6 +15,7 @@ const SeatsList = ({
   sumTotalPrice,
   reservedSeats,
   setReservedSeats,
+  unavailableSeats,
 }: GetTotalPriceStructure): React.ReactElement => {
   const setSeatsLocation = (
     rowPosition: number,
@@ -22,14 +24,14 @@ const SeatsList = ({
     return `r${rowPosition + 1}s${seatPosition + 1}`;
   };
 
-  const isReservedSeat = (seatsLocation: string) => {
-    return reservedSeats.includes(seatsLocation);
+  const isReservedSeat = (seatsLocation: string, usedSeats: string[]) => {
+    return usedSeats.includes(seatsLocation);
   };
 
   const handleOnClick = (rowPosition: number, seatPosition: number) => {
     const seatsLocation = setSeatsLocation(rowPosition, seatPosition);
 
-    if (isReservedSeat(seatsLocation)) {
+    if (isReservedSeat(seatsLocation, reservedSeats)) {
       setReservedSeats(
         reservedSeats.filter((seats) => seats !== seatsLocation),
       );
@@ -62,19 +64,35 @@ const SeatsList = ({
                     actionOnClick={() =>
                       handleOnClick(rowPosition, seatPosition)
                     }
+                    disabled={isReservedSeat(
+                      setSeatsLocation(rowPosition, seatPosition),
+                      unavailableSeats,
+                    )}
                   >
                     <img
                       src={`/images/seats/${
                         isReservedSeat(
                           setSeatsLocation(rowPosition, seatPosition),
+                          unavailableSeats,
                         )
+                          ? `reserved`
+                          : isReservedSeat(
+                              setSeatsLocation(rowPosition, seatPosition),
+                              reservedSeats,
+                            )
                           ? `selected`
                           : `available`
                       }.svg`}
                       alt={`${
                         isReservedSeat(
                           setSeatsLocation(rowPosition, seatPosition),
+                          unavailableSeats,
                         )
+                          ? `reserved`
+                          : isReservedSeat(
+                              setSeatsLocation(rowPosition, seatPosition),
+                              reservedSeats,
+                            )
                           ? `selected`
                           : `available`
                       } seat`}

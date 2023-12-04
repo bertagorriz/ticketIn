@@ -11,6 +11,9 @@ import { SessionsStructure } from "../../entities/sessions/types";
 const SeatsContainer = (): React.ReactElement => {
   const { sessionsData } = useAppSelector((store) => store.sessions);
   const { selectedMovie } = useAppSelector((store) => store.movies);
+  const { reserved: unavailableSeats } = useAppSelector(
+    (store) => store.seats.seatsData,
+  );
   const { sessionId } = useParams();
   const [selectedSession, setSelectedSession] = useState<
     SessionsStructure | undefined | null
@@ -32,6 +35,7 @@ const SeatsContainer = (): React.ReactElement => {
 
     return { sumTotalPrice, restTotalPrice };
   };
+
   const getReservedInformationSeats = (seats: string[]) => {
     const getSeatsInformation = seats.map((seat) => {
       if (seats.length === 1 || seat === seats[seats.length - 1]) {
@@ -58,10 +62,10 @@ const SeatsContainer = (): React.ReactElement => {
       sessionsData.find((session) => session.id === +sessionId),
     );
 
-    if (doesSelectedSessionExist(selectedSession)) {
+    if (doesSelectedSessionExist(selectedSession) || !unavailableSeats) {
       return;
     }
-  }, [selectedSession, sessionId, sessionsData]);
+  }, [selectedSession, sessionId, sessionsData, unavailableSeats]);
 
   return (
     <SeatsContainerStyled>
@@ -72,6 +76,7 @@ const SeatsContainer = (): React.ReactElement => {
             sumTotalPrice={getTotalPrice().sumTotalPrice}
             reservedSeats={reservedSeats}
             setReservedSeats={setReservedSeats}
+            unavailableSeats={unavailableSeats}
           />
           <SeatsInfo
             movie={selectedMovie.title}

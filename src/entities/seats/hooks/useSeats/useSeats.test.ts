@@ -9,7 +9,7 @@ import { errorHandlers } from "../../../../mocks/handlers";
 describe("Given a useSeats functions", () => {
   describe("When it calls the getSeatsBySession function", () => {
     test("Then it should return a seats information", async () => {
-      const seatsInformation: SeatsStructure[] = [seatsMock];
+      const seatsInformation: SeatsStructure = seatsMock;
 
       const {
         result: {
