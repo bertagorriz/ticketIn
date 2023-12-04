@@ -35,9 +35,9 @@ const SeatsContainer = (): React.ReactElement => {
   const getReservedInformationSeats = (seats: string[]) => {
     const getSeatsInformation = seats.map((seat) => {
       if (seats.length === 1 || seat === seats[seats.length - 1]) {
-        return `r:${seat[1]} s:${seat[3]}`;
+        return `R${seat[1]} - S${seat[3]}`;
       }
-      return `r:${seat[1]} s:${seat[3]} | `;
+      return `R${seat[1]} - S${seat[3]} | `;
     });
 
     return getSeatsInformation;
