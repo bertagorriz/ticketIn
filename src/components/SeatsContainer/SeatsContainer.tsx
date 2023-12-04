@@ -19,12 +19,19 @@ const SeatsContainer = (): React.ReactElement => {
   const [reservedSeats, setReservedSeats] = useState([] as string[]);
 
   const getTotalPrice = () => {
-    const sumTotalPrice = () => setCurrentPrice(currentPrice + 9);
-    const restTotalPrice = () => setCurrentPrice(currentPrice - 9);
+    const sumTotalPrice = () => {
+      if (selectedSession) {
+        setCurrentPrice(currentPrice + selectedSession.price);
+      }
+    };
+    const restTotalPrice = () => {
+      if (selectedSession) {
+        setCurrentPrice(currentPrice - selectedSession.price);
+      }
+    };
 
     return { sumTotalPrice, restTotalPrice };
   };
-
   const getReservedInformationSeats = (seats: string[]) => {
     const getSeatsInformation = seats.map((seat) => {
       if (seats.length === 1 || seat === seats[seats.length - 1]) {
