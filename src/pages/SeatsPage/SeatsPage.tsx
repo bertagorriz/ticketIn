@@ -35,9 +35,9 @@ const SeatsPage = (): React.ReactElement => {
         const selectedSessions = await getSessionsByMovie(movieId);
         const selectedMovie = await getOneMovie(movieId);
 
-        dispatch(loadSeatsBySessionActionCreator(selectedSeatsSession));
         dispatch(loadSessionsActionCreator(selectedSessions));
         dispatch(loadMovieByIdActionCreator(selectedMovie));
+        dispatch(loadSeatsBySessionActionCreator(selectedSeatsSession));
       }
     })();
   }, [
