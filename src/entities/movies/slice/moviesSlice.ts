@@ -6,6 +6,7 @@ const initialMoviesState: MoviesState = {
   selectedMovie: {
     id: 0,
     title: "",
+    slug: "",
     director: "",
     posterUrl: [],
     synopsis: "",

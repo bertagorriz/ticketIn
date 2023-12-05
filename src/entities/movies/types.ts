@@ -1,6 +1,7 @@
 export interface MovieStructure {
   id: number;
   title: string;
+  slug: string;
   director: string;
   posterUrl: string[];
   synopsis: string;

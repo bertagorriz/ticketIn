@@ -4,6 +4,7 @@ export const moviesMock: MovieStructure[] = [
   {
     id: 1,
     title: "Barbie",
+    slug: "barbie",
     director: "Greta Gerwig",
     posterUrl: [
       "https://i.ibb.co/FDRMDLQ/barbie-big.webp",
@@ -17,6 +18,7 @@ export const moviesMock: MovieStructure[] = [
   {
     id: 2,
     title: "Inception",
+    slug: "inception",
     director: "Christopher Nolan",
     posterUrl: [
       "https://i.ibb.co/F0NxYqJ/inception-big.webp",
@@ -34,6 +36,7 @@ export const emptyMoviesListMock: MovieStructure[] = [];
 export const emptyMovieMock: MovieStructure = {
   id: 0,
   title: "",
+  slug: "",
   director: "",
   posterUrl: [],
   synopsis: "",
