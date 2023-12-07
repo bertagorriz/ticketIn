@@ -31,12 +31,14 @@ export const seatsSlice = createSlice({
         reserved: [...action.payload],
       },
     }),
+    resetSeatState: (): SeatsState => initialSeatsState,
   },
 });
 
 export const {
   loadSeatsBySession: loadSeatsBySessionActionCreator,
   updateSelectedSeats: updateSelectedSeatsActionCreator,
+  resetSeatState: resetSeatStateActionCreator,
 } = seatsSlice.actions;
 
 export const seatsReducer = seatsSlice.reducer;

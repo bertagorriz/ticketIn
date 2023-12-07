@@ -5,7 +5,7 @@ import { useAppDispatch, useAppSelector } from "../../store";
 import MovieDetailPageStyled from "./MovieDetailPageStyled";
 import {
   loadMovieByIdActionCreator,
-  resetStateStoreActionCreator,
+  resetMoviesStoreActionCreator,
 } from "../../entities/movies/slice/moviesSlice";
 import useMovies from "../../entities/movies/hooks/useMovies";
 import { useNavigate, useParams } from "react-router-dom";
@@ -46,7 +46,7 @@ const MovieDetailPage = (): React.ReactElement => {
     })();
 
     return () => {
-      dispatch(resetStateStoreActionCreator());
+      dispatch(resetMoviesStoreActionCreator());
     };
   }, [dispatch, getOneMovie, id, getSessionsByMovie]);
 
