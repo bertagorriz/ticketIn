@@ -4,7 +4,10 @@ import SeatsPageStyled from "./SeatsPageStyled";
 import { useEffect, useMemo } from "react";
 import useSeats from "../../entities/seats/hooks/useSeats/useSeats";
 import { useAppDispatch } from "../../store";
-import { loadSeatsBySessionActionCreator } from "../../entities/seats/slice/seatsSlice";
+import {
+  loadSeatsBySessionActionCreator,
+  resetSeatStateActionCreator,
+} from "../../entities/seats/slice/seatsSlice";
 import useMovies from "../../entities/movies/hooks/useMovies";
 import { loadMovieByIdActionCreator } from "../../entities/movies/slice/moviesSlice";
 import AxiosMoviesClient from "../../entities/movies/services/AxiosMoviesClient";
@@ -40,6 +43,10 @@ const SeatsPage = (): React.ReactElement => {
         dispatch(loadSeatsBySessionActionCreator(selectedSeatsSession));
       }
     })();
+
+    return () => {
+      dispatch(resetSeatStateActionCreator());
+    };
   }, [
     dispatch,
     getSeatsBySession,
