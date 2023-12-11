@@ -1,20 +1,36 @@
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useParams } from "react-router-dom";
 import NavbarStyled from "./NavbarStyled";
 import paths from "../../routers/paths/paths";
 import { useMemo } from "react";
 import { useAppSelector } from "../../store";
+import PathStructure from "../../routers/paths/types";
 
 const Navbar = (): React.ReactElement => {
   const { pathname } = useLocation();
-  const { selectedMovie } = useAppSelector((store) => store.movies);
+  const pathNameLocation = pathname.split("/");
+  const { movieId, sessionId } = useParams();
+  const { id } = useAppSelector((store) => store.movies.selectedMovie);
 
   const hasBackOption = useMemo(() => {
     return (
       pathname === paths.tickets ||
-      pathname === paths.seats ||
-      pathname === `${paths.movies}/${selectedMovie.id}`
+      pathname === `${paths.seats}/${movieId}/${sessionId}` ||
+      pathname === `${paths.movies}/${id}`
     );
-  }, [pathname, selectedMovie]);
+  }, [id, movieId, pathname, sessionId]);
+
+  const backToLastPage = (
+    path: Partial<keyof PathStructure>,
+    paths: Partial<PathStructure>,
+    movieId: number,
+  ) => {
+    switch (path) {
+      case "seats":
+        return `${paths.movies}/${movieId}`;
+      case "movies":
+        return paths.movies;
+    }
+  };
 
   return (
     <NavbarStyled>
@@ -27,7 +43,16 @@ const Navbar = (): React.ReactElement => {
         />
       </Link>
       {hasBackOption && (
-        <Link to={paths.movies} className="navbar-container__backtopage-button">
+        <Link
+          to={
+            backToLastPage(
+              pathNameLocation[1] as keyof PathStructure,
+              paths,
+              id,
+            ) as string
+          }
+          className="navbar-container__backtopage-button"
+        >
           <img
             src="/images/navbar/back-to-page-icon.svg"
             alt="back to page button"
