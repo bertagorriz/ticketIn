@@ -31,12 +31,20 @@ export const ticketSlice = createSlice({
       ...currentTicketState,
       ticketsData: [...currentTicketState.ticketsData, action.payload],
     }),
+    loadTickets: (
+      currentTicketState,
+      action: PayloadAction<TicketStructure[]>,
+    ): TicketState => ({
+      ...currentTicketState,
+      ticketsData: [...action.payload],
+    }),
   },
 });
 
 export const {
   loadTicketById: loadTicketByIdActionCreator,
   addTicket: addTicketActionCreator,
+  loadTickets: loadTicketsActionCreator,
 } = ticketSlice.actions;
 
 export const ticketReducer = ticketSlice.reducer;
