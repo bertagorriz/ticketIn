@@ -1,4 +1,4 @@
-import { TicketStructure } from "../types";
+import { TicketStructure } from "../slice/types";
 
 export const ticketsMocks: TicketStructure[] = [
   {

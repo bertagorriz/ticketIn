@@ -18,7 +18,6 @@ import { loadSessionsActionCreator } from "../../entities/sessions/slice/session
 import AxiosSeatsClient from "../../entities/seats/service/AxiosSeatsClient";
 import paths from "../../routers/paths/paths";
 
-
 const SeatsPage = (): React.ReactElement => {
   const moviesClient = useMemo(() => new AxiosMoviesClient(apiUrl), []);
   const sessionsClient = useMemo(() => new AxiosSessionsClient(apiUrl), []);
