@@ -12,13 +12,15 @@ import apiUrl from "../../utils/apiUrl/apiUrl";
 import AxiosSessionsClient from "../../entities/sessions/services/AxiosSessionsClient";
 import useSessions from "../../entities/sessions/hooks/useSessions/useSessions";
 import { loadSessionsActionCreator } from "../../entities/sessions/slice/sessionsSlice";
+import AxiosSeatsClient from "../../entities/seats/service/AxiosSeatsClient";
 
 const SeatsPage = (): React.ReactElement => {
   const moviesClient = useMemo(() => new AxiosMoviesClient(apiUrl), []);
   const sessionsClient = useMemo(() => new AxiosSessionsClient(apiUrl), []);
+  const seatsClient = useMemo(() => new AxiosSeatsClient(apiUrl), []);
 
   const { movieId, sessionId } = useParams();
-  const { getSeatsBySession } = useSeats();
+  const { getSeatsBySession } = useSeats(seatsClient);
   const { getOneMovie } = useMovies(moviesClient);
   const { getSessionsByMovie } = useSessions(sessionsClient);
   const dispatch = useAppDispatch();
