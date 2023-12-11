@@ -20,7 +20,7 @@ class AxiosTicketsClient implements TicketsClient {
     return ticket;
   }
 
-  async createTickets(ticketData: TicketStructure): Promise<TicketStructure> {
+  async createTicket(ticketData: TicketStructure): Promise<TicketStructure> {
     const { data: ticket } = await axios.post<TicketStructure>(
       `${this.apiUrl}${paths.tickets}`,
       ticketData,
