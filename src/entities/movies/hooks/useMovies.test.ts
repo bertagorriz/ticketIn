@@ -50,11 +50,11 @@ describe("Given a getMovies function", () => {
 });
 
 describe("Given a getOneMovie function", () => {
-  const movieId = "1";
+  const movieSlug = "barbie";
 
   describe("When it is invoked", () => {
     test("Then it should return one movie", async () => {
-      const moviesList: MovieStructure = moviesMock[1];
+      const moviesList: MovieStructure = moviesMock[0];
       const moviesClient = new AxiosMoviesClient(apiUrl);
 
       const {
@@ -65,7 +65,7 @@ describe("Given a getOneMovie function", () => {
         wrapper: wrapWithProviders,
       });
 
-      const expectedMovieList = await getOneMovie(movieId);
+      const expectedMovieList = await getOneMovie(movieSlug);
 
       expect(expectedMovieList).toStrictEqual(moviesList);
     });
@@ -86,7 +86,7 @@ describe("Given a getOneMovie function", () => {
         wrapper: wrapWithProviders,
       });
 
-      const movieList = getOneMovie(movieId);
+      const movieList = getOneMovie(movieSlug);
 
       expect(movieList).rejects.toThrowError(expectedError);
     });
