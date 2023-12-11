@@ -9,6 +9,10 @@ import {
   sessionsMock,
 } from "../entities/sessions/mocks/sessionsMock";
 import { emptySeatsMock, seatsMock } from "../entities/seats/mocks/seatsMock";
+import {
+  createdTicketMock,
+  ticketsMocks,
+} from "../entities/tickets/mocks/ticketsMocks";
 
 const apiUrl = import.meta.env.VITE_API_URL;
 
@@ -40,6 +44,18 @@ export const handlers = [
   http.put(`${apiUrl}${paths.seats}/1`, () => {
     return HttpResponse.json(seatsMock, { status: 200 });
   }),
+
+  http.get(`${apiUrl}${paths.tickets}`, () => {
+    return HttpResponse.json(ticketsMocks, { status: 200 });
+  }),
+
+  http.get(`${apiUrl}${paths.tickets}/1`, () => {
+    return HttpResponse.json(ticketsMocks[0], { status: 200 });
+  }),
+
+  http.post(`${apiUrl}${paths.tickets}`, () => {
+    return HttpResponse.json(createdTicketMock, { status: 200 });
+  }),
 ];
 
 export const errorHandlers = [
@@ -68,6 +84,18 @@ export const errorHandlers = [
   }),
 
   http.put(`${apiUrl}${paths.seats}/1`, () => {
+    return HttpResponse.json({}, { status: 401 });
+  }),
+
+  http.get(`${apiUrl}${paths.tickets}`, () => {
+    return HttpResponse.json({}, { status: 401 });
+  }),
+
+  http.get(`${apiUrl}${paths.tickets}/1`, () => {
+    return HttpResponse.json({}, { status: 401 });
+  }),
+
+  http.post(`${apiUrl}${paths.tickets}`, () => {
     return HttpResponse.json({}, { status: 401 });
   }),
 ];
