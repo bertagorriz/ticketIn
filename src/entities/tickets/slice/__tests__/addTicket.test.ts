@@ -1,4 +1,4 @@
-import { addedTicketMock, ticketMock } from "../../mocks/ticketsMocks";
+import { addedTicketMock, ticketsMock } from "../../mocks/ticketsMocks";
 import { addTicketActionCreator, ticketReducer } from "../ticketsSlice";
 import { TicketState } from "../types";
 
@@ -6,7 +6,7 @@ describe("Given an addTicket reducer", () => {
   describe("When it receives a ticket and the action to add a new ticket", () => {
     test("Then it should return a collection of two tickets", () => {
       const currentTicketState: TicketState = {
-        ticketsData: ticketMock,
+        ticketsData: ticketsMock,
         selectedTicket: {
           id: 0,
           movieId: 0,
@@ -18,7 +18,7 @@ describe("Given an addTicket reducer", () => {
       };
 
       const expectedNewState: TicketState = {
-        ticketsData: [...ticketMock, addedTicketMock],
+        ticketsData: [...ticketsMock, addedTicketMock],
         selectedTicket: {
           id: 0,
           movieId: 0,
