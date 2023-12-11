@@ -37,7 +37,6 @@ const SeatsPage = (): React.ReactElement => {
         const selectedMovie = await getOneMovie(movieId);
 
         dispatch(loadMovieByIdActionCreator(selectedMovie));
-       
       }
     })();
 
@@ -51,7 +50,6 @@ const SeatsPage = (): React.ReactElement => {
     movieId,
     sessionId,
     getSessionsByMovie,
-    navigate,
   ]);
 
   useEffect(() => {
@@ -62,7 +60,7 @@ const SeatsPage = (): React.ReactElement => {
           id.toString(),
           sessionId,
         );
-        
+
         if (!selectedSeatsSession) {
           navigate(paths.errorPage);
           return;
@@ -72,7 +70,14 @@ const SeatsPage = (): React.ReactElement => {
         dispatch(loadSeatsBySessionActionCreator(selectedSeatsSession));
       }
     })();
-  }, [dispatch, getSeatsBySession, getSessionsByMovie, id, sessionId]);
+  }, [
+    dispatch,
+    getSeatsBySession,
+    getSessionsByMovie,
+    id,
+    navigate,
+    sessionId,
+  ]);
 
   return (
     <SeatsPageStyled>

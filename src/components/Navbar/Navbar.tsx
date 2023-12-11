@@ -8,25 +8,25 @@ import PathStructure from "../../routers/paths/types";
 const Navbar = (): React.ReactElement => {
   const { pathname } = useLocation();
   const pathNameLocation = pathname.split("/");
-  const { movieId, sessionId } = useParams();
+  const { movieSlug, sessionId } = useParams();
   const { id } = useAppSelector((store) => store.movies.selectedMovie);
 
   const hasBackOption = useMemo(() => {
     return (
       pathname === paths.tickets ||
-      pathname === `${paths.seats}/${movieId}/${sessionId}` ||
+      pathname === `${paths.seats}/${movieSlug}/${sessionId}` ||
       pathname === `${paths.movies}/${id}`
     );
-  }, [id, movieId, pathname, sessionId]);
+  }, [id, movieSlug, pathname, sessionId]);
 
   const backToLastPage = (
     path: Partial<keyof PathStructure>,
     paths: Partial<PathStructure>,
-    movieId: number,
+    movieSlug: string,
   ) => {
     switch (path) {
       case "seats":
-        return `${paths.movies}/${movieId}`;
+        return `${paths.movies}/${movieSlug}`;
       case "movies":
         return paths.movies;
     }
@@ -48,7 +48,7 @@ const Navbar = (): React.ReactElement => {
             backToLastPage(
               pathNameLocation[1] as keyof PathStructure,
               paths,
-              id,
+              id.toString(),
             ) as string
           }
           className="navbar-container__backtopage-button"
