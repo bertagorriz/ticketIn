@@ -4,7 +4,7 @@ import {
   moviesMock,
 } from "../../mocks/moviesMock";
 import { MoviesState } from "../../types";
-import { moviesReducer, resetStateStoreActionCreator } from "../moviesSlice";
+import { moviesReducer, resetMoviesStoreActionCreator } from "../moviesSlice";
 
 describe("Given a resetSliceState reducer", () => {
   describe("When it called", () => {
@@ -19,7 +19,7 @@ describe("Given a resetSliceState reducer", () => {
         selectedMovie: emptyMovieMock,
       };
 
-      const resetStateSlice = resetStateStoreActionCreator();
+      const resetStateSlice = resetMoviesStoreActionCreator();
 
       const newState: MoviesState = moviesReducer(
         currentMoviesState,

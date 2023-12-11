@@ -1,10 +1,13 @@
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import SeatsContainer from "../../components/SeatsContainer/SeatsContainer";
 import SeatsPageStyled from "./SeatsPageStyled";
 import { useEffect, useMemo } from "react";
 import useSeats from "../../entities/seats/hooks/useSeats/useSeats";
 import { useAppDispatch } from "../../store";
-import { loadSeatsBySessionActionCreator } from "../../entities/seats/slice/seatsSlice";
+import {
+  loadSeatsBySessionActionCreator,
+  resetSeatStateActionCreator,
+} from "../../entities/seats/slice/seatsSlice";
 import useMovies from "../../entities/movies/hooks/useMovies";
 import { loadMovieByIdActionCreator } from "../../entities/movies/slice/moviesSlice";
 import AxiosMoviesClient from "../../entities/movies/services/AxiosMoviesClient";
@@ -13,6 +16,8 @@ import AxiosSessionsClient from "../../entities/sessions/services/AxiosSessionsC
 import useSessions from "../../entities/sessions/hooks/useSessions/useSessions";
 import { loadSessionsActionCreator } from "../../entities/sessions/slice/sessionsSlice";
 import AxiosSeatsClient from "../../entities/seats/service/AxiosSeatsClient";
+import paths from "../../routers/paths/paths";
+
 
 const SeatsPage = (): React.ReactElement => {
   const moviesClient = useMemo(() => new AxiosMoviesClient(apiUrl), []);
@@ -20,6 +25,7 @@ const SeatsPage = (): React.ReactElement => {
   const seatsClient = useMemo(() => new AxiosSeatsClient(apiUrl), []);
 
   const { movieId, sessionId } = useParams();
+  const navigate = useNavigate();
   const { getSeatsBySession } = useSeats(seatsClient);
   const { getOneMovie } = useMovies(moviesClient);
   const { getSessionsByMovie } = useSessions(sessionsClient);
@@ -37,11 +43,20 @@ const SeatsPage = (): React.ReactElement => {
         const selectedSessions = await getSessionsByMovie(movieId);
         const selectedMovie = await getOneMovie(movieId);
 
+        if (!selectedSeatsSession) {
+          navigate(paths.errorPage);
+          return;
+        }
+
         dispatch(loadSessionsActionCreator(selectedSessions));
         dispatch(loadMovieByIdActionCreator(selectedMovie));
         dispatch(loadSeatsBySessionActionCreator(selectedSeatsSession));
       }
     })();
+
+    return () => {
+      dispatch(resetSeatStateActionCreator());
+    };
   }, [
     dispatch,
     getSeatsBySession,
@@ -49,6 +64,7 @@ const SeatsPage = (): React.ReactElement => {
     movieId,
     sessionId,
     getSessionsByMovie,
+    navigate,
   ]);
 
   return (

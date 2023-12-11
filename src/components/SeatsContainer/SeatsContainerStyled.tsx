@@ -6,7 +6,7 @@ const SeatsContainerStyled = styled.div`
   justify-content: center;
   flex-direction: column;
   max-width: 320px;
-  gap: 100px;
+  gap: 120px;
 `;
 
 export default SeatsContainerStyled;
