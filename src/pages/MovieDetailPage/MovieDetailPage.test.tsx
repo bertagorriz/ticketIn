@@ -16,6 +16,9 @@ const renderMovieDetailPage = (boolean: boolean) => {
   });
 };
 
+const spyScrollTo = vi.fn();
+Object.defineProperty(global.window, "scrollTo", { value: spyScrollTo });
+
 describe("Given a MovieDetailPage component", () => {
   describe("When it is rendered", () => {
     test("Then it should show the movie title 'Barbie'", () => {

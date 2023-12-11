@@ -1,4 +1,4 @@
-import { ticketsMock } from "../../mocks/ticketsMocks";
+import { ticketsMocks } from "../../mocks/ticketsMocks";
 import { loadTicketsActionCreator, ticketReducer } from "../ticketsSlice";
 import { TicketState, TicketStructure } from "../types";
 
@@ -19,11 +19,11 @@ describe("Given a loadTickets reducer", () => {
         },
       };
 
-      const loadTickets = loadTicketsActionCreator(ticketsMock);
+      const loadTickets = loadTicketsActionCreator(ticketsMocks);
 
       const expectedNewMovieState: TicketState = {
         ...currentTicketState,
-        ticketsData: ticketsMock,
+        ticketsData: ticketsMocks,
       };
 
       const newState: TicketState = ticketReducer(

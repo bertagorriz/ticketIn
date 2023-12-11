@@ -1,6 +1,6 @@
 import { TicketStructure } from "../slice/types";
 
-export const ticketsMock: TicketStructure[] = [
+export const ticketsMocks: TicketStructure[] = [
   {
     id: 1,
     movieId: 1,
@@ -11,19 +11,19 @@ export const ticketsMock: TicketStructure[] = [
   },
   {
     id: 2,
-    movieId: 2,
-    sessionId: 2,
+    movieId: 1,
+    sessionId: 1,
     seats: ["r1s3", "r1s4"],
     url: "url-del-ticket",
     price: 18,
   },
 ];
 
-export const addedTicketMock: TicketStructure = {
+export const createdTicketMock: TicketStructure = {
   id: 3,
-  movieId: 3,
-  sessionId: 3,
-  seats: ["r2s2", "r2s2"],
-  url: "url-del-ticket",
-  price: 27,
+  movieId: 1,
+  sessionId: 1,
+  seats: ["r1s3"],
+  url: "url-del-ticket-created",
+  price: 18,
 };
