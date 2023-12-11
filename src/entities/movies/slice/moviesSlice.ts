@@ -33,14 +33,14 @@ export const moviesSlice = createSlice({
       ...currentMoviesState,
       selectedMovie: action.payload,
     }),
-    resetSliceState: (): MoviesState => initialMoviesState,
+    resetMoviesState: (): MoviesState => initialMoviesState,
   },
 });
 
 export const {
   loadMovies: loadMoviesActionCreator,
   loadMovieById: loadMovieByIdActionCreator,
-  resetSliceState: resetStateStoreActionCreator,
+  resetMoviesState: resetMoviesStoreActionCreator,
 } = moviesSlice.actions;
 
 export const moviesReducer = moviesSlice.reducer;

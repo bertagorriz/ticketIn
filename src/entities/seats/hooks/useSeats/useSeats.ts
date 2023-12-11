@@ -19,7 +19,9 @@ const useSeats = () => {
       try {
         dispatch(showSkeletonActionCreator());
 
-        const { data: seats } = await axios.get<SeatsStructure>(
+        const {
+          data: [seats],
+        } = await axios.get<SeatsStructure[]>(
           `${apiUrl}${paths.seats}?movieId=${movieId}&sessionId=${sessionId}`,
         );
         dispatch(hideSkeletonActionCreator());

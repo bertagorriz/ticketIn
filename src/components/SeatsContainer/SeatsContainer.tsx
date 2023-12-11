@@ -11,6 +11,9 @@ import { SessionsStructure } from "../../entities/sessions/types";
 const SeatsContainer = (): React.ReactElement => {
   const { sessionsData } = useAppSelector((store) => store.sessions);
   const { selectedMovie } = useAppSelector((store) => store.movies);
+  const { reserved: unavailableSeats } = useAppSelector(
+    (store) => store.seats.seatsData,
+  );
   const { sessionId } = useParams();
   const [selectedSession, setSelectedSession] = useState<
     SessionsStructure | undefined | null
@@ -19,8 +22,16 @@ const SeatsContainer = (): React.ReactElement => {
   const [reservedSeats, setReservedSeats] = useState([] as string[]);
 
   const getTotalPrice = () => {
-    const sumTotalPrice = () => setCurrentPrice(currentPrice + 9);
-    const restTotalPrice = () => setCurrentPrice(currentPrice - 9);
+    const sumTotalPrice = () => {
+      if (selectedSession) {
+        setCurrentPrice(currentPrice + selectedSession.price);
+      }
+    };
+    const restTotalPrice = () => {
+      if (selectedSession) {
+        setCurrentPrice(currentPrice - selectedSession.price);
+      }
+    };
 
     return { sumTotalPrice, restTotalPrice };
   };
@@ -28,9 +39,9 @@ const SeatsContainer = (): React.ReactElement => {
   const getReservedInformationSeats = (seats: string[]) => {
     const getSeatsInformation = seats.map((seat) => {
       if (seats.length === 1 || seat === seats[seats.length - 1]) {
-        return `r:${seat[1]} s:${seat[3]}`;
+        return `R${seat[1]} - S${seat[3]}`;
       }
-      return `r:${seat[1]} s:${seat[3]} | `;
+      return `R${seat[1]} - S${seat[3]} | `;
     });
 
     return getSeatsInformation;
@@ -51,10 +62,10 @@ const SeatsContainer = (): React.ReactElement => {
       sessionsData.find((session) => session.id === +sessionId),
     );
 
-    if (doesSelectedSessionExist(selectedSession)) {
+    if (doesSelectedSessionExist(selectedSession) || !unavailableSeats) {
       return;
     }
-  }, [selectedSession, sessionId, sessionsData]);
+  }, [selectedSession, sessionId, sessionsData, unavailableSeats]);
 
   return (
     <SeatsContainerStyled>
@@ -65,6 +76,7 @@ const SeatsContainer = (): React.ReactElement => {
             sumTotalPrice={getTotalPrice().sumTotalPrice}
             reservedSeats={reservedSeats}
             setReservedSeats={setReservedSeats}
+            unavailableSeats={unavailableSeats}
           />
           <SeatsInfo
             movie={selectedMovie.title}

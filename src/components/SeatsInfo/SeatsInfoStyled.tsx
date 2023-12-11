@@ -4,7 +4,8 @@ const SeatsInfoStyled = styled.section`
   display: flex;
   flex-direction: column;
   gap: 18px;
-  margin: -20px;
+  margin: -30px -20px;
+  width: 320px;
   padding: 28px;
   border-radius: 20px 20px 0 0;
   background-color: ${(props) => props.theme.colors.header};

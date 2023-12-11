@@ -10,6 +10,7 @@ beforeEach(() => {
         restTotalPrice={() => ""}
         setReservedSeats={() => ""}
         sumTotalPrice={() => ""}
+        unavailableSeats={[""]}
       />,
     ),
   );
