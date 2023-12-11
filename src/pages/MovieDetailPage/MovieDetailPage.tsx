@@ -22,11 +22,12 @@ const MovieDetailPage = (): React.ReactElement => {
   const moviesClient = useMemo(() => new AxiosMoviesClient(apiUrl), []);
 
   const { isLoading } = useAppSelector((store) => store.ui);
-  const { id } = useParams();
+  const { movieSlug } = useParams();
   const { getOneMovie } = useMovies(moviesClient);
   const { getSessionsByMovie } = useSessions(sessionsClient);
   const dispatch = useAppDispatch();
   const movie = useAppSelector((store) => store.movies.selectedMovie);
+  const movieId = useAppSelector((store) => store.movies.selectedMovie.id);
   const sessions = useAppSelector((store) => store.sessions.sessionsData);
   const navigate = useNavigate();
 
@@ -34,13 +35,11 @@ const MovieDetailPage = (): React.ReactElement => {
     (async () => {
       scrollTo(0, 0);
 
-      if (id) {
-        const selectedMovie = await getOneMovie(id);
-        const sessions = await getSessionsByMovie(id);
+      if (movieSlug) {
+        const selectedMovie = await getOneMovie(movieSlug);
 
         if (selectedMovie) {
           dispatch(loadMovieByIdActionCreator(selectedMovie));
-          dispatch(loadSessionsActionCreator(sessions));
         }
       }
     })();
@@ -48,10 +47,20 @@ const MovieDetailPage = (): React.ReactElement => {
     return () => {
       dispatch(resetStateStoreActionCreator());
     };
-  }, [dispatch, getOneMovie, id, getSessionsByMovie]);
+  }, [dispatch, getOneMovie, getSessionsByMovie, movieSlug]);
 
-  const handleOnSession = (movieId: number, sessionId: number) => () => {
-    navigate(`${paths.seats}/${movieId}/${sessionId}`);
+  useEffect(() => {
+    (async () => {
+      if (movieId) {
+        const sessions = await getSessionsByMovie(movieId.toString());
+
+        dispatch(loadSessionsActionCreator(sessions));
+      }
+    })();
+  }, [dispatch, getSessionsByMovie, movieId]);
+
+  const handleOnSession = (movieSlug: string, sessionId: number) => () => {
+    navigate(`${paths.seats}/${movieSlug}/${sessionId}`);
   };
 
   return (
@@ -100,7 +109,7 @@ const MovieDetailPage = (): React.ReactElement => {
                       text={convertDateTime(session.dates).hour}
                       ariaLabel="session button"
                       title="session button"
-                      actionOnClick={handleOnSession(movie.id, session.id)}
+                      actionOnClick={handleOnSession(movie.slug, session.id)}
                     />
                   </li>
                 ))}
