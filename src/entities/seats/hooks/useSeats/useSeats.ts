@@ -1,17 +1,14 @@
 import { useCallback } from "react";
 import { SeatsStructure } from "../../types";
-import paths from "../../../../routers/paths/paths";
-import axios from "axios";
 import showToast from "../../../../toast/showToast";
 import {
   hideSkeletonActionCreator,
   showSkeletonActionCreator,
 } from "../../../ui/uiSlice";
 import { useAppDispatch } from "../../../../store";
+import SeatsClient from "../../service/types";
 
-const apiUrl = import.meta.env.VITE_API_URL;
-
-const useSeats = () => {
+const useSeats = (seatsClient: SeatsClient) => {
   const dispatch = useAppDispatch();
 
   const getSeatsBySession = useCallback(
@@ -19,11 +16,7 @@ const useSeats = () => {
       try {
         dispatch(showSkeletonActionCreator());
 
-        const {
-          data: [seats],
-        } = await axios.get<SeatsStructure[]>(
-          `${apiUrl}${paths.seats}?movieId=${movieId}&sessionId=${sessionId}`,
-        );
+        const seats = await seatsClient.getSeatsBySession(movieId, sessionId);
         dispatch(hideSkeletonActionCreator());
 
         return seats;
@@ -35,7 +28,7 @@ const useSeats = () => {
         throw error;
       }
     },
-    [dispatch],
+    [dispatch, seatsClient],
   );
 
   const updateSeat = async (
@@ -43,10 +36,7 @@ const useSeats = () => {
     dataSeat: SeatsStructure,
   ): Promise<SeatsStructure> => {
     try {
-      const { data: updatedSeat } = await axios.put<SeatsStructure>(
-        `${apiUrl}${paths.seats}/${id}`,
-        dataSeat,
-      );
+      const updatedSeat = await seatsClient.updateSeat(id, dataSeat);
 
       return updatedSeat;
     } catch {

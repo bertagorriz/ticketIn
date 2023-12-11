@@ -5,8 +5,12 @@ import useSeats from "./useSeats";
 import { wrapWithProviders } from "../../../../utils/testUtils";
 import { server } from "../../../../mocks/node";
 import { errorHandlers } from "../../../../mocks/handlers";
+import AxiosSeatsClient from "../../service/AxiosSeatsClient";
+import apiUrl from "../../../../utils/apiUrl/apiUrl";
 
 describe("Given a useSeats functions", () => {
+  const seatsClient = new AxiosSeatsClient(apiUrl);
+
   describe("When it calls the getSeatsBySession function", () => {
     test("Then it should return a seats information", async () => {
       const seatsInformation: SeatsStructure = seatsMock;
@@ -15,7 +19,9 @@ describe("Given a useSeats functions", () => {
         result: {
           current: { getSeatsBySession },
         },
-      } = renderHook(() => useSeats(), { wrapper: wrapWithProviders });
+      } = renderHook(() => useSeats(seatsClient), {
+        wrapper: wrapWithProviders,
+      });
 
       const expectedSeatsInformation = await getSeatsBySession(
         seatsMock.movieId.toString(),
@@ -34,7 +40,9 @@ describe("Given a useSeats functions", () => {
         result: {
           current: { getSeatsBySession },
         },
-      } = renderHook(() => useSeats(), { wrapper: wrapWithProviders });
+      } = renderHook(() => useSeats(seatsClient), {
+        wrapper: wrapWithProviders,
+      });
 
       expect(
         getSeatsBySession(
@@ -53,7 +61,9 @@ describe("Given a useSeats functions", () => {
         result: {
           current: { updateSeat },
         },
-      } = renderHook(() => useSeats(), { wrapper: wrapWithProviders });
+      } = renderHook(() => useSeats(seatsClient), {
+        wrapper: wrapWithProviders,
+      });
 
       const expectedSeatsInformation = await updateSeat(
         seatsMock.movieId.toString(),
@@ -72,7 +82,9 @@ describe("Given a useSeats functions", () => {
         result: {
           current: { updateSeat },
         },
-      } = renderHook(() => useSeats(), { wrapper: wrapWithProviders });
+      } = renderHook(() => useSeats(seatsClient), {
+        wrapper: wrapWithProviders,
+      });
 
       expect(
         updateSeat(seatsMock.movieId.toString(), seatsMock),
