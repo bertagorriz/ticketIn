@@ -2,7 +2,8 @@ import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { TicketState, TicketStructure } from "./types";
 
 const initialTicketState: TicketState = {
-  ticketData: {
+  ticketsData: [],
+  selectedTicket: {
     id: 0,
     movieId: 0,
     sessionId: 0,
@@ -21,12 +22,21 @@ export const ticketSlice = createSlice({
       action: PayloadAction<TicketStructure>,
     ): TicketState => ({
       ...currentTicketState,
-      ticketData: action.payload,
+      selectedTicket: action.payload,
+    }),
+    addTicket: (
+      currentTicketState,
+      action: PayloadAction<TicketStructure>,
+    ): TicketState => ({
+      ...currentTicketState,
+      ticketsData: [...currentTicketState.ticketsData, action.payload],
     }),
   },
 });
 
-export const { loadTicketById: loadTicketByIdActionCreator } =
-  ticketSlice.actions;
+export const {
+  loadTicketById: loadTicketByIdActionCreator,
+  addTicket: addTicketActionCreator,
+} = ticketSlice.actions;
 
 export const ticketReducer = ticketSlice.reducer;

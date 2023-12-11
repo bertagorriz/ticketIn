@@ -8,5 +8,6 @@ export interface TicketStructure {
 }
 
 export interface TicketState {
-  ticketData: TicketStructure;
+  ticketsData: TicketStructure[];
+  selectedTicket: TicketStructure;
 }
