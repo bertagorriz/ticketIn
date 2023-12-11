@@ -8,12 +8,14 @@ import { moviesReducer } from "../entities/movies/slice/moviesSlice";
 import { uiReducer } from "../entities/ui/uiSlice";
 import { sessionsReducer } from "../entities/sessions/slice/sessionsSlice";
 import { seatsReducer } from "../entities/seats/slice/seatsSlice";
+import { ticketReducer } from "../entities/tickets/slice/ticketSlice";
 
 const rootReducer = combineReducers({
   movies: moviesReducer,
   ui: uiReducer,
   sessions: sessionsReducer,
   seats: seatsReducer,
+  ticket: ticketReducer,
 });
 
 export const setupStore = (preloadedState?: PreloadedState<RootState>) => {
