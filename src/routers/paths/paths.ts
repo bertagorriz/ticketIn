@@ -3,7 +3,7 @@ import PathStructure from "./types";
 const paths: PathStructure = {
   app: "/",
   movies: "/movies",
-  detail: "/:id",
+  detail: "/:movieSlug",
   sessions: "/sessions",
   seats: "/seats",
   movieId: "/:movieId",

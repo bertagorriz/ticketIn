@@ -3,7 +3,7 @@ import SeatsContainer from "../../components/SeatsContainer/SeatsContainer";
 import SeatsPageStyled from "./SeatsPageStyled";
 import { useEffect, useMemo } from "react";
 import useSeats from "../../entities/seats/hooks/useSeats/useSeats";
-import { useAppDispatch } from "../../store";
+import { useAppDispatch, useAppSelector } from "../../store";
 import {
   loadSeatsBySessionActionCreator,
   resetSeatStateActionCreator,
@@ -27,27 +27,17 @@ const SeatsPage = (): React.ReactElement => {
   const { getOneMovie } = useMovies(moviesClient);
   const { getSessionsByMovie } = useSessions(sessionsClient);
   const dispatch = useAppDispatch();
+  const { id } = useAppSelector((store) => store.movies.selectedMovie);
 
   useEffect(() => {
     (async () => {
       scrollTo(0, 0);
 
       if (movieId && sessionId) {
-        const selectedSeatsSession = await getSeatsBySession(
-          movieId,
-          sessionId,
-        );
-        const selectedSessions = await getSessionsByMovie(movieId);
         const selectedMovie = await getOneMovie(movieId);
 
-        if (!selectedSeatsSession) {
-          navigate(paths.errorPage);
-          return;
-        }
-
-        dispatch(loadSessionsActionCreator(selectedSessions));
         dispatch(loadMovieByIdActionCreator(selectedMovie));
-        dispatch(loadSeatsBySessionActionCreator(selectedSeatsSession));
+       
       }
     })();
 
@@ -63,6 +53,26 @@ const SeatsPage = (): React.ReactElement => {
     getSessionsByMovie,
     navigate,
   ]);
+
+  useEffect(() => {
+    (async () => {
+      if (id && sessionId) {
+        const selectedSessions = await getSessionsByMovie(id.toString());
+        const selectedSeatsSession = await getSeatsBySession(
+          id.toString(),
+          sessionId,
+        );
+        
+        if (!selectedSeatsSession) {
+          navigate(paths.errorPage);
+          return;
+        }
+
+        dispatch(loadSessionsActionCreator(selectedSessions));
+        dispatch(loadSeatsBySessionActionCreator(selectedSeatsSession));
+      }
+    })();
+  }, [dispatch, getSeatsBySession, getSessionsByMovie, id, sessionId]);
 
   return (
     <SeatsPageStyled>

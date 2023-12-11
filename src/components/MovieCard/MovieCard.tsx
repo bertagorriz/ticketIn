@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import slugify from "slugify";
 import { MovieStructure } from "../../entities/movies/types";
 import MovieCardStyled from "./MovieCardStyled";
 import paths from "../../routers/paths/paths";
@@ -9,12 +10,14 @@ interface MovieCardProps {
 }
 
 const MovieCard = ({
-  movieProps: { id, posterUrl, title },
+  movieProps: { posterUrl, title },
   isLazy,
 }: MovieCardProps): React.ReactElement => {
+  const movieSlug = slugify(title, { lower: true });
+
   return (
     <MovieCardStyled className="movie">
-      <Link to={`${paths.movies}/${id}`} className="movie">
+      <Link to={`${paths.movies}/${movieSlug}`} className="movie">
         <img
           className="movie__poster"
           src={posterUrl[1]}

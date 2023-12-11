@@ -29,11 +29,11 @@ const useMovies = (moviesClient: MoviesClient) => {
   }, [dispatch, moviesClient]);
 
   const getOneMovie = useCallback(
-    async (id: string): Promise<MovieStructure> => {
+    async (movieSlug: string): Promise<MovieStructure> => {
       try {
         dispatch(showSkeletonActionCreator());
 
-        const movie = await moviesClient.getOneMovie(id);
+        const movie = await moviesClient.getOneMovie(movieSlug);
 
         dispatch(hideSkeletonActionCreator());
 

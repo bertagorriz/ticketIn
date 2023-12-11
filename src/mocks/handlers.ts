@@ -17,8 +17,11 @@ export const handlers = [
     return HttpResponse.json(moviesMock, { status: 200 });
   }),
 
-  http.get(`${apiUrl}${paths.movies}/1`, () => {
-    return HttpResponse.json(moviesMock[1], { status: 200 });
+  http.get(`${apiUrl}${paths.movies}/?slug=barbie`, ({ request }) => {
+    const url = new URL(request.url);
+    url.searchParams.set("slug", moviesMock[0].slug);
+
+    return HttpResponse.json(moviesMock[0], { status: 200 });
   }),
 
   http.get(`${apiUrl}${paths.sessions}`, ({ request }) => {
