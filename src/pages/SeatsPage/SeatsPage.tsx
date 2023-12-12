@@ -17,6 +17,7 @@ import useSessions from "../../entities/sessions/hooks/useSessions/useSessions";
 import { loadSessionsActionCreator } from "../../entities/sessions/slice/sessionsSlice";
 import AxiosSeatsClient from "../../entities/seats/service/AxiosSeatsClient";
 import paths from "../../routers/paths/paths";
+import Modal from "../../components/Modal/Modal";
 
 const SeatsPage = (): React.ReactElement => {
   const moviesClient = useMemo(() => new AxiosMoviesClient(apiUrl), []);
@@ -30,6 +31,9 @@ const SeatsPage = (): React.ReactElement => {
   const { getSessionsByMovie } = useSessions(sessionsClient);
   const dispatch = useAppDispatch();
   const { id } = useAppSelector((store) => store.movies.selectedMovie);
+  const {
+    modalState: { isVisible, url },
+  } = useAppSelector((store) => store.ui);
 
   useEffect(() => {
     (async () => {
@@ -82,10 +86,13 @@ const SeatsPage = (): React.ReactElement => {
   ]);
 
   return (
-    <SeatsPageStyled>
-      <h1 className="title">Choose your seats</h1>
-      <SeatsContainer />
-    </SeatsPageStyled>
+    <>
+      {isVisible && <Modal url={url} />}
+      <SeatsPageStyled>
+        <h1 className="title">Choose your seats</h1>
+        <SeatsContainer />
+      </SeatsPageStyled>
+    </>
   );
 };
 

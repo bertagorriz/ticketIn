@@ -2,12 +2,19 @@ import { NavLink } from "react-router-dom";
 import Button from "../Button/Button";
 import paths from "../../routers/paths/paths";
 import ModalStyled from "./ModalStyled";
+import { useAppDispatch } from "../../store";
+import { hideModalActionCreator } from "../../entities/ui/uiSlice";
 
 interface ModalProps {
   url: string;
 }
 
 const Modal = ({ url }: ModalProps): React.ReactElement => {
+  const dispatch = useAppDispatch();
+
+  const handleOnClose = () => {
+    dispatch(hideModalActionCreator());
+  };
   return (
     <ModalStyled>
       <article className="modal-container">
@@ -28,6 +35,9 @@ const Modal = ({ url }: ModalProps): React.ReactElement => {
                 height={25}
               />
             }
+            title="close button"
+            actionOnClick={handleOnClose}
+            ariaLabel="close button"
           />
         </div>
         <span className="modal-container__feeback">Fantastic!</span>
