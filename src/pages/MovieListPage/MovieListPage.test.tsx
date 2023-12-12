@@ -6,7 +6,7 @@ import { moviesMock } from "../../entities/movies/mocks/moviesMock";
 const renderMovieListPage = (boolean: boolean) => {
   renderWithProviders(wrapWithRouter(<MovieListPage />), {
     movies: { moviesData: moviesMock, selectedMovie: moviesMock[0] },
-    ui: { isLoading: boolean },
+    ui: { isLoading: boolean, modalState: { isVisible: false, url: "" } },
   });
 };
 
