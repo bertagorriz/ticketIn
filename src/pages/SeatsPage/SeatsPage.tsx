@@ -9,53 +9,90 @@ import {
   resetSeatStateActionCreator,
 } from "../../entities/seats/slice/seatsSlice";
 import useMovies from "../../entities/movies/hooks/useMovies";
-import { loadMovieByIdActionCreator } from "../../entities/movies/slice/moviesSlice";
+import {
+  loadMovieByIdActionCreator,
+  resetMoviesStoreActionCreator,
+} from "../../entities/movies/slice/moviesSlice";
 import AxiosMoviesClient from "../../entities/movies/services/AxiosMoviesClient";
 import apiUrl from "../../utils/apiUrl/apiUrl";
 import AxiosSessionsClient from "../../entities/sessions/services/AxiosSessionsClient";
 import useSessions from "../../entities/sessions/hooks/useSessions/useSessions";
-import { loadSessionsActionCreator } from "../../entities/sessions/slice/sessionsSlice";
+import {
+  loadSessionsActionCreator,
+  resetSessionsStateActionCreator,
+} from "../../entities/sessions/slice/sessionsSlice";
 import AxiosSeatsClient from "../../entities/seats/service/AxiosSeatsClient";
 import paths from "../../routers/paths/paths";
 import Modal from "../../components/Modal/Modal";
+import AxiosTicketsClient from "../../entities/tickets/services/AxiosTicketsClient";
+import useTickets from "../../entities/tickets/hooks/useTickets";
+import {
+  addTicketActionCreator,
+  loadTicketsActionCreator,
+} from "../../entities/tickets/slice/ticketsSlice";
+import { TicketStructure } from "../../entities/tickets/types";
+import {
+  hideModalActionCreator,
+  showModalActionCreator,
+} from "../../entities/ui/uiSlice";
 
 const SeatsPage = (): React.ReactElement => {
   const moviesClient = useMemo(() => new AxiosMoviesClient(apiUrl), []);
   const sessionsClient = useMemo(() => new AxiosSessionsClient(apiUrl), []);
   const seatsClient = useMemo(() => new AxiosSeatsClient(apiUrl), []);
+  const ticketsClient = useMemo(() => new AxiosTicketsClient(apiUrl), []);
 
-  const { movieId, sessionId } = useParams();
+  const { movieSlug, sessionId } = useParams();
   const navigate = useNavigate();
-  const { getSeatsBySession } = useSeats(seatsClient);
+  const { getSeatsBySession, updateSeat } = useSeats(seatsClient);
   const { getOneMovie } = useMovies(moviesClient);
   const { getSessionsByMovie } = useSessions(sessionsClient);
+  const { createTicket, getTickets } = useTickets(ticketsClient);
   const dispatch = useAppDispatch();
   const { id } = useAppSelector((store) => store.movies.selectedMovie);
+  const { seatsData } = useAppSelector((store) => store.seats);
   const {
     modalState: { isVisible, url },
   } = useAppSelector((store) => store.ui);
+
+  const handleOnClick = async (ticket: TicketStructure): Promise<void> => {
+    await createTicket(ticket);
+    await updateSeat(seatsData.id.toString(), {
+      ...seatsData,
+      reserved: [...seatsData.reserved, ...ticket.seats],
+    });
+
+    dispatch(addTicketActionCreator(ticket));
+    dispatch(showModalActionCreator({ isVisible: true, url: ticket.url }));
+  };
 
   useEffect(() => {
     (async () => {
       scrollTo(0, 0);
 
-      if (movieId && sessionId) {
-        const selectedMovie = await getOneMovie(movieId);
+      if (movieSlug && sessionId) {
+        const selectedMovie = await getOneMovie(movieSlug);
+        const tickets = await getTickets();
 
         dispatch(loadMovieByIdActionCreator(selectedMovie));
+        dispatch(loadTicketsActionCreator(tickets));
       }
     })();
 
     return () => {
       dispatch(resetSeatStateActionCreator());
+      dispatch(resetMoviesStoreActionCreator());
+      dispatch(resetSessionsStateActionCreator());
+      dispatch(hideModalActionCreator());
     };
   }, [
     dispatch,
     getSeatsBySession,
     getOneMovie,
-    movieId,
+    movieSlug,
     sessionId,
     getSessionsByMovie,
+    getTickets,
   ]);
 
   useEffect(() => {
@@ -90,7 +127,7 @@ const SeatsPage = (): React.ReactElement => {
       {isVisible && <Modal url={url} />}
       <SeatsPageStyled>
         <h1 className="title">Choose your seats</h1>
-        <SeatsContainer />
+        <SeatsContainer onClick={handleOnClick} />
       </SeatsPageStyled>
     </>
   );
