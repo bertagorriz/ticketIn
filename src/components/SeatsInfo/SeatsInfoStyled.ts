@@ -7,6 +7,7 @@ const SeatsInfoStyled = styled.section`
   margin: -30px -20px;
   width: 320px;
   padding: 28px;
+  height: 37vh;
   border-radius: 20px 20px 0 0;
   background-color: ${(props) => props.theme.colors.header};
   color: ${(props) => props.theme.colors.text};

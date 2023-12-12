@@ -7,6 +7,7 @@ import SeatsContainerStyled from "./SeatsContainerStyled";
 import showToast from "../../toast/showToast";
 import { useEffect, useState } from "react";
 import { SessionsStructure } from "../../entities/sessions/types";
+import Button from "../Button/Button";
 
 const SeatsContainer = (): React.ReactElement => {
   const { sessionsData } = useAppSelector((store) => store.sessions);
@@ -84,6 +85,7 @@ const SeatsContainer = (): React.ReactElement => {
             seats={getReservedInformationSeats(reservedSeats)}
             price={currentPrice}
           />{" "}
+          <Button classname="buy" text="BUY" ariaLabel="buy button" />
         </>
       )}
     </SeatsContainerStyled>

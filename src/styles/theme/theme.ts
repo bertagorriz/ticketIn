@@ -11,6 +11,7 @@ const theme: DefaultTheme = {
     available: "#f2f2f2",
     reserved: "#cb2b2b",
     selected: "#098f3e",
+    buy: "#2c2c2c",
   },
   fonts: {
     primary: "Inter",
