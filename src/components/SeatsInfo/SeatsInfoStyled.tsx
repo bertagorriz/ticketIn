@@ -30,6 +30,28 @@ const SeatsInfoStyled = styled.section`
       gap: 10px;
     }
   }
+
+  .buy-container {
+    display: flex;
+    justify-content: center;
+
+    &__button {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 130px;
+      height: 48px;
+      background-color: #2c2c2c;
+      border-radius: 7px;
+      color: ${(props) => props.theme.colors.text};
+      font-size: ${(props) => props.theme.fontSize.medium};
+      font-weight: ${(props) => props.theme.fontWeight.regular};
+
+      &:hover {
+        background-color: ${(props) => props.theme.colors.hover};
+      }
+    }
+  }
 `;
 
 export default SeatsInfoStyled;

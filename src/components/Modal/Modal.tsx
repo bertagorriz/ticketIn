@@ -15,6 +15,7 @@ const Modal = ({ url }: ModalProps): React.ReactElement => {
   const handleOnClose = () => {
     dispatch(hideModalActionCreator());
   };
+
   return (
     <ModalStyled>
       <article className="modal-container">

@@ -20,8 +20,6 @@ describe("Given a Navbar component", () => {
 
   describe("When it is rendered and the user is not in the main page", () => {
     test("Then it should show a 'back' button", () => {
-      const selectedMovie = moviesMock[0];
-
       const routes = [
         {
           path: paths.app,
@@ -32,14 +30,14 @@ describe("Given a Navbar component", () => {
           element: <Navbar />,
         },
         {
-          path: `${paths.movies}/${selectedMovie.id}`,
+          path: paths.tickets,
           element: <Navbar />,
         },
       ];
 
       const router = createMemoryRouter(routes);
 
-      router.state.location.pathname = `${paths.movies}/${selectedMovie.id}`;
+      router.state.location.pathname = paths.tickets;
 
       const textImage = "back to page button";
 

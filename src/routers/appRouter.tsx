@@ -43,7 +43,7 @@ const appRouter = createBrowserRouter([
         ),
       },
       {
-        path: `${paths.seats}${paths.movieId}${paths.sessionId}`,
+        path: `${paths.seats}${paths.detail}${paths.sessionId}`,
         element: (
           <Suspense>
             <LazySeatsPage />

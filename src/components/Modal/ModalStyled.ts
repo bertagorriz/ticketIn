@@ -16,7 +16,8 @@ const ModalStyled = styled.section`
     background-color: ${(props) => props.theme.colors.background};
     color: ${(props) => props.theme.colors.text};
     width: 280px;
-    height: 300px;
+    height: 330px;
+    padding: 30px;
     display: flex;
     flex-direction: column;
     align-items: center;
