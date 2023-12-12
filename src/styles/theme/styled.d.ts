@@ -11,6 +11,7 @@ declare module "styled-components" {
       available: string;
       reserved: string;
       selected: string;
+      buy: string;
     };
 
     fonts: {
