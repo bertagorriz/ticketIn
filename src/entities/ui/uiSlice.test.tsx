@@ -4,9 +4,13 @@ import {
   uiReducer,
 } from "./uiSlice";
 
-const falseSkeletonState = { isLoading: false };
+const falseSkeletonState = {
+  isLoading: false,
+  modalState: { isVisible: false, url: "" },
+};
 const trueSkeletonState = {
   isLoading: true,
+  modalState: { isVisible: false, url: "" },
 };
 
 describe("Given a showSkeleton reducer", () => {

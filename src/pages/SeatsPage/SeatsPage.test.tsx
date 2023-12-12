@@ -15,7 +15,7 @@ describe("Given a SeatsPage", () => {
       renderWithProviders(wrapWithRouter(<SeatsPage />), {
         movies: { moviesData: moviesMock, selectedMovie: moviesMock[0] },
         sessions: { sessionsData: sessionsMock },
-        ui: { isLoading: false },
+        ui: { isLoading: false, modalState: { isVisible: false, url: "" } },
       });
 
       const title = await screen.findByRole("heading", { name: expectedTitle });

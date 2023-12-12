@@ -45,7 +45,7 @@ describe("Given a Navbar component", () => {
 
       renderWithProviders(<RouterProvider router={router} />, {
         movies: { moviesData: moviesMock, selectedMovie: moviesMock[0] },
-        ui: { isLoading: false },
+        ui: { isLoading: false, modalState: { isVisible: false, url: "" } },
       });
 
       const expectedResult = screen.getByRole("img", { name: textImage });

@@ -11,7 +11,7 @@ beforeEach(() => {
 const renderMovieDetailPage = (boolean: boolean) => {
   renderWithProviders(wrapWithRouter(<MovieDetailPage />), {
     movies: { moviesData: moviesMock, selectedMovie: moviesMock[0] },
-    ui: { isLoading: boolean },
+    ui: { isLoading: boolean, modalState: { isVisible: false, url: "" } },
     sessions: { sessionsData: sessionsMock },
   });
 };
