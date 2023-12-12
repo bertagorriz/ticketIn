@@ -16,10 +16,13 @@ export const sessionsSlice = createSlice({
       ...currentSessionsState,
       sessionsData: action.payload,
     }),
+    resetSessionsState: (): SessionsState => initialSessionsState,
   },
 });
 
-export const { loadSessionsByMovie: loadSessionsActionCreator } =
-  sessionsSlice.actions;
+export const {
+  loadSessionsByMovie: loadSessionsActionCreator,
+  resetSessionsState: resetSessionsStateActionCreator,
+} = sessionsSlice.actions;
 
 export const sessionsReducer = sessionsSlice.reducer;
