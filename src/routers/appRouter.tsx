@@ -7,6 +7,7 @@ import {
   LazyMovieLisPage,
   LazyNotFoundPage,
   LazySeatsPage,
+  LazyTicketPage,
 } from "./lazyComponentes";
 
 const appRouter = createBrowserRouter([
@@ -47,6 +48,14 @@ const appRouter = createBrowserRouter([
         element: (
           <Suspense>
             <LazySeatsPage />
+          </Suspense>
+        ),
+      },
+      {
+        path: `${paths.tickets}`,
+        element: (
+          <Suspense>
+            <LazyTicketPage />
           </Suspense>
         ),
       },
