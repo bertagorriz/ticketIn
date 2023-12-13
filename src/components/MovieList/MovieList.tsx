@@ -5,6 +5,8 @@ import MoviesListStyled from "./MovieListStyled";
 const MovieList = (): React.ReactElement => {
   const { moviesData } = useAppSelector((store) => store.movies);
 
+  const eagerPosition = 4;
+
   return (
     <MoviesListStyled>
       <ul className="cards-list">
@@ -12,7 +14,7 @@ const MovieList = (): React.ReactElement => {
           <li key={position}>
             <MovieCard
               movieProps={movie}
-              isLazy={position < 3 ? "eager" : "lazy"}
+              isLazy={position < eagerPosition ? "eager" : "lazy"}
             />
           </li>
         ))}
