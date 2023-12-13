@@ -16,6 +16,8 @@ describe("Given a SeatsInfo component", () => {
             seats={[]}
             price={0}
             date={convertDateTime(sessionsMock[0].dates)}
+            handleOnClick={() => ""}
+            isSelected={false}
           />,
         ),
       );

@@ -10,7 +10,10 @@ import {
 import useMovies from "../../entities/movies/hooks/useMovies";
 import { useNavigate, useParams } from "react-router-dom";
 import useSessions from "../../entities/sessions/hooks/useSessions/useSessions";
-import { loadSessionsActionCreator } from "../../entities/sessions/slice/sessionsSlice";
+import {
+  loadSessionsActionCreator,
+  resetSessionsStateActionCreator,
+} from "../../entities/sessions/slice/sessionsSlice";
 import convertDateTime from "../../convertDates/convertDates";
 import paths from "../../routers/paths/paths";
 import AxiosSessionsClient from "../../entities/sessions/services/AxiosSessionsClient";
@@ -46,6 +49,7 @@ const MovieDetailPage = (): React.ReactElement => {
 
     return () => {
       dispatch(resetMoviesStoreActionCreator());
+      dispatch(resetSessionsStateActionCreator());
     };
   }, [dispatch, getOneMovie, getSessionsByMovie, movieSlug]);
 

@@ -2,22 +2,20 @@ import { Link, useLocation, useParams } from "react-router-dom";
 import NavbarStyled from "./NavbarStyled";
 import paths from "../../routers/paths/paths";
 import { useMemo } from "react";
-import { useAppSelector } from "../../store";
 import PathStructure from "../../routers/paths/types";
 
 const Navbar = (): React.ReactElement => {
   const { pathname } = useLocation();
   const pathNameLocation = pathname.split("/");
   const { movieSlug, sessionId } = useParams();
-  const { id } = useAppSelector((store) => store.movies.selectedMovie);
 
   const hasBackOption = useMemo(() => {
     return (
       pathname === paths.tickets ||
       pathname === `${paths.seats}/${movieSlug}/${sessionId}` ||
-      pathname === `${paths.movies}/${id}`
+      pathname === `${paths.movies}/${movieSlug}`
     );
-  }, [id, movieSlug, pathname, sessionId]);
+  }, [movieSlug, pathname, sessionId]);
 
   const backToLastPage = (
     path: Partial<keyof PathStructure>,
@@ -48,7 +46,7 @@ const Navbar = (): React.ReactElement => {
             backToLastPage(
               pathNameLocation[1] as keyof PathStructure,
               paths,
-              id.toString(),
+              movieSlug as string,
             ) as string
           }
           className="navbar-container__backtopage-button"

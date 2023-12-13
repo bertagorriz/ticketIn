@@ -1,4 +1,5 @@
 import { DateTimeStructure } from "../../convertDates/convertDates";
+import Button from "../Button/Button";
 import SeatsInfoStyled from "./SeatsInfoStyled";
 
 interface SeatsInfoProps {
@@ -6,6 +7,8 @@ interface SeatsInfoProps {
   date: DateTimeStructure;
   seats: string[];
   price: number;
+  handleOnClick: () => void;
+  isSelected: boolean;
 }
 
 const SeatsInfo = ({
@@ -13,6 +16,8 @@ const SeatsInfo = ({
   date,
   seats,
   price,
+  handleOnClick,
+  isSelected,
 }: SeatsInfoProps): React.ReactElement => {
   return (
     <SeatsInfoStyled className="info-container">
@@ -42,6 +47,14 @@ const SeatsInfo = ({
           <span>Total: {price}€</span>
         </div>
       </article>
+      <div className="buy-container">
+        <Button
+          classname="buy-container__button"
+          text="BUY"
+          actionOnClick={handleOnClick}
+          disabled={isSelected}
+        />
+      </div>
     </SeatsInfoStyled>
   );
 };

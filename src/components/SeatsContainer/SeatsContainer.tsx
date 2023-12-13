@@ -7,13 +7,22 @@ import SeatsContainerStyled from "./SeatsContainerStyled";
 import showToast from "../../toast/showToast";
 import { useEffect, useState } from "react";
 import { SessionsStructure } from "../../entities/sessions/types";
+import { TicketStructure } from "../../entities/tickets/types";
+import paths from "../../routers/paths/paths";
 
-const SeatsContainer = (): React.ReactElement => {
+interface SeatsContainerProps {
+  onClick: (ticket: TicketStructure) => void;
+}
+
+const SeatsContainer = ({
+  onClick,
+}: SeatsContainerProps): React.ReactElement => {
   const { sessionsData } = useAppSelector((store) => store.sessions);
   const { selectedMovie } = useAppSelector((store) => store.movies);
   const { reserved: unavailableSeats } = useAppSelector(
     (store) => store.seats.seatsData,
   );
+  const { ticketsData } = useAppSelector((store) => store.ticket);
   const { sessionId } = useParams();
   const [selectedSession, setSelectedSession] = useState<
     SessionsStructure | undefined | null
@@ -45,6 +54,19 @@ const SeatsContainer = (): React.ReactElement => {
     });
 
     return getSeatsInformation;
+  };
+
+  const handleOnClick = (): void => {
+    const uniqueId = ticketsData.length + 1;
+
+    onClick({
+      id: uniqueId,
+      movieId: selectedMovie.id,
+      sessionId: selectedSession?.id as number,
+      seats: [...reservedSeats],
+      url: `https://ticketin-api.onrender.com${paths.tickets}/${uniqueId}`,
+      price: currentPrice,
+    });
   };
 
   const doesSelectedSessionExist = (
@@ -83,7 +105,9 @@ const SeatsContainer = (): React.ReactElement => {
             date={convertDateTime(selectedSession.dates)}
             seats={getReservedInformationSeats(reservedSeats)}
             price={currentPrice}
-          />{" "}
+            handleOnClick={handleOnClick}
+            isSelected={!reservedSeats.length}
+          />
         </>
       )}
     </SeatsContainerStyled>
