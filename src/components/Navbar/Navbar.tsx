@@ -37,7 +37,7 @@ const Navbar = (): React.ReactElement => {
           src="/images/navbar/ticketin-logo.svg"
           alt="ticketIn Logo"
           width="146"
-          height="28.05"
+          height="28"
         />
       </Link>
       {hasBackOption && (

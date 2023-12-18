@@ -22,8 +22,8 @@ const MovieCard = ({
           className="movie__poster"
           src={posterUrl[1]}
           alt={`${title} poster`}
-          width="130px"
-          height="190px"
+          width="130"
+          height="190"
           loading={isLazy}
         />
         <h2 className="movie__title">{title}</h2>
